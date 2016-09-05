@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Country Floral</title>
+    {% load staticfiles %}
+    <link href=" {% static 'country_floral_app/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'country_floral_app/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+    <link href=" {% static 'country_floral_app/css/font.css' %}" rel="stylesheet">
+    <link href=" {% static 'country_floral_app/css/selectize_default.css' %}" rel="stylesheet">
+    <link href=" {% static 'country_floral_app/css/style.css' %}" rel="stylesheet">
+    <link href=" {% static 'country_floral_app/css/slider.css' %}" rel="stylesheet">
+    <link href=" {% static 'country_floral_app/css/responsiveslides.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="{% url 'country_floral_app:country_floral_app.views.order' %}">Order Now</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{% url 'country_floral_app:country_floral_app.views.index' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'country_floral_app:country_floral_app.views.about' %}">About</a>
+                </li>
+                <li>
+                    <a href="{% url 'country_floral_app:country_floral_app.views.gallery' %}">Photo Gallery</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+{%block header%}
+{%endblock%}
+
+{%block contents%}
+{%endblock%}
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; Country Floral 2016</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!--JS Imports-->
+{% load staticfiles %}
+<script src="{% static 'country_floral_app/js/jquery-2.1.1.js' %}"></script>
+<script src="{% static 'country_floral_app/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'country_floral_app/js/selectize.js' %}"></script>
+<script src="{% static 'country_floral_app/js/responsiveslides.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<script src="{% static 'country_floral_app/js/jquery-mask.js' %}"></script>
+
+<!--Custom JS-->
+{%block custom_js%}
+{%endblock%}
+
+<script>
+</script>
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+{%extends "country_floral_app/base.html" %}
+
+{%block header%}
+<header class="intro-header-small" style="background-color: blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 class="site-heading">Preparing Your Order</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+{%endblock%}
+
+{%block contents%}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+            <div class="col-lg-12 col-md-12 post-preview">
+                <h2 class="post-title">Your Information</h2>
+                <hr>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12 myinput">
+                            <label class="mylabel">First Name</label>
+                            <input type="text" class="form-control" id="fname" maxlength="30">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 myinput">
+                            <label class="mylabel">Last Name</label>
+                            <input type="text" class="form-control" id="lname" maxlength="30">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="row">
+                        <div class="col-lg-12 myinput">
+                            <label class="mylabel">Email</label>
+                            <input type="text" class="form-control" id="email" maxlength="30">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 myinput">
+                            <label class="mylabel">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" maxlength="30">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 post-preview">
+                <h2 class="post-title">Delivery Information</h2>
+                <hr>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12 myinput">
+                            <label class="mylabel">Recipient</label>
+                            <input type="text" class="form-control" id="recipient" maxlength="30">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 myinput">
+                            <label class="mylabel">Delivery Address</label>
+                            <button type="text" class="form-control text-left" id="address" maxlength="90">Click Here</button>
+
+                            <div class="messagepop pop" style="overflow-y: scroll; height:300px;">
+                                <div class="col-lg-12 col-md-12 post-preview">
+                                    <h2 class="post-title">Address</h2>
+                                    <div class="col-lg-8">
+                                        <div class="row">
+                                            <div class="col-lg-12 myinput">
+                                                <label class="mylabel">Street</label>
+                                                <input type="text" class="form-control" id="street" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 myinput">
+                                                <label class="mylabel">City</label>
+                                                <input type="text" class="form-control" id="city" maxlength="30">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="row">
+                                            <div class="col-lg-12 myinput">
+                                                <label class="mylabel">State</label>
+                                                <input type="text" class="form-control" id="state" maxlength="30">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 myinput">
+                                                <label class="mylabel">Zip</label>
+                                                <input type="text" class="form-control" id="zip" maxlength="30">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary close" style="float:left;">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 myinput">
+                            <label class="mylabel">Delivery Date</label>
+                            <input type="text" class="form-control datepicker" id="date">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 myinput">
+                            <label class="mylabel">Other Delivery Info</label>
+                            <input type="text" class="form-control" id="other" maxlength="50">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="row">
+                        <div class="col-lg-12 myinput">
+                            <label class="mylabel">Personalized Message</label>
+                            <textarea class="form-control noresize" rows="10" id="message" maxlength="200"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 post-preview">
+                <h2 class="post-title">Price</h2>
+                <hr>
+                <p class="post-meta">Name your price. Use the picture gallery to check out what you get for your money. Our arrangements start at $35;
+                this does not include tax or delivery.</p>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                       <div class="callbacks_container">
+                          <ul class="rslides" id="slider4">
+                            <li>
+                              <img src="http://localhost:8000/static/country_floral_app/img/05.jpg" alt="">
+                              <p class="caption">Price: $35</p>
+                            </li>
+                            <li>
+                              <img src="http://localhost:8000/static/country_floral_app/img/001.jpg" alt="">
+                              <p class="caption">Price: $40</p>
+                            </li>
+                            <li>
+                              <img src="http://localhost:8000/static/country_floral_app/img/004.jpg" alt="">
+                              <p class="caption">Price: $45</p>
+                            </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-lg-offset-4 myinput2">
+                        <label class="mylabel">Amount you want to pay</label>
+                        <input type="text" class="form-control" id="cost" maxlength="30">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 post-preview">
+                <h2 class="post-title">Keywords</h2>
+                <hr>
+                <p class="post-meta">Use keywords to help our design team make the perfect floral arrangement. Use the preset words or add your own. Be orbital. Be creative. We will do the same.  </p>
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+                    <label class="subheading" for="keywords">Design Keywords (Mood, Season, Colors, Flowers):</label>
+                    <input type="text" class="input_selectize setting-min-width" name="keywords" id="keywords" placeholder="Select Keywords..." style="opacity: 1; position: relative; left: 0px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+        <button type="button" class="btn btn-primary" id="payment" style="float:right;">Move on to payment</button>
+    </div>
+</div>
+
+{%endblock%}
+
+<!--Custom JS-->
+{%block custom_js%}
+<script>
+var street = "";
+var zip = "";
+var state = "";
+var city = "";
+var address = "";
+
+
+var foo = {{ keyword_list|safe }};
+var myoptions = [];
+var myoptgroups = [];
+for (var key in foo) {
+    if (foo.hasOwnProperty(key)) {
+        if(key != "occasion"){
+            myoptgroups.push({value: key, label: key.toUpperCase()})
+             for (i = 0; i < foo[key].length; i++) {
+                up_char = foo[key][i].charAt(0).toUpperCase()
+                my_name = up_char + foo[key][i].slice(1)
+                myoptions.push({class: key, value: foo[key][i], name: my_name})
+             }
+        }
+    }
+}
+
+$('#keywords').selectize({
+    plugins: ['remove_button'],
+    delimiter: ',',
+    persist: false,
+    create: function(input) {
+        return {
+            class: "OTHER",
+            value: input,
+            name: input
+        }
+    },
+    options : myoptions,
+    optgroups: myoptgroups,
+    optgroupField: 'class',
+    labelField: 'name',
+    searchField: ['name'],
+    render: {
+        optgroup_header: function(data, escape) {
+            return '<div class="optgroup-header">' + escape(data.label) + ' <span class="scientific">' + '</span></div>';
+        }
+    }
+});
+
+$(function() {
+      $("#slider4").responsiveSlides({
+        auto: false,
+        pager: false,
+        nav: true,
+        speed: 500,
+        namespace: "callbacks",
+      });
+});
+
+$('.datepicker').datepicker();
+
+$("#phone").mask("(999) 999-9999");
+$("#phone").on("blur", function() {
+    var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
+
+    if( last.length == 3 ) {
+        var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
+        var lastfour = move + last;
+
+        var first = $(this).val().substr( 0, 9 );
+
+        $(this).val( first + '-' + lastfour );
+    }
+});
+
+$.mask.definitions['+']='[123456789]';
+$.mask.definitions['~']='[05]';
+$.mask.definitions['-']='[05]';
+$("#cost").mask("$+~?-");
+$("#cost").on("blur", function() {
+       var val = $(this).val().slice(1);
+       if (parseInt(val) <35 ){
+             $(this).val("$35");
+       }
+});
+
+
+function deselect(e) {
+  $('.pop').slideFadeToggle(function() {
+    e.removeClass('selected');
+  });
+}
+
+$(function() {
+  $('#address').on('click', function() {
+    if($(this).hasClass('selected')) {
+      deselect($(this));
+    } else {
+      $(this).addClass('selected');
+      $('.pop').slideFadeToggle();
+    }
+    return false;
+  });
+
+  $('.close').on('click', function() {
+    zip = ($("#zip").val());
+    state = ($("#state").val());
+    city = ($("#city").val());
+    street = ($("#street").val());
+    address = street+" "+city+", "+state+" "+zip;
+    if (address.length > 30){
+        ($("#address").text(address.slice(0,30)+"..."));
+    }
+    else{
+        ($("#address").text(address));
+    }
+    deselect($('#address'));
+    return false;
+  });
+});
+
+$.fn.slideFadeToggle = function(easing, callback) {
+  return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+};
+
+
+function send_email(url) {
+    $.getJSON(url, function(chart_data) {
+        console.log("test 1111");
+    });
+}
+
+
+$(function() {
+  $('#payment').on('click', function() {
+    url_base = "{% url 'country_floral_app:process' %}";
+    params = {'address': address, 'fname': $("#fname").val(), 'lname': $("#lname").val(), 'email': $("#email").val(), 'phone': $("#phone").val(),
+              'recipient': $("#recipient").val(), 'date': $("#date").val(), 'other': $("#other").val(), 'message': $("#message").val(),
+              'cost': $("#cost").val(),'keywords': $("#keywords").val()};
+    my_url = url_base + "?" + $.param( params );
+    $.ajax({
+        url: my_url,
+        type: 'GET',
+    });
+  });
+});
+
+</script>
+{%endblock%}

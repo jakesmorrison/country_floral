@@ -1,0 +1,82 @@
+{% extends "country_floral_app/base.html" %}
+
+{%block header%}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<!--{% load staticfiles %}-->
+<!--<header class="intro-header" style="background-image: url('{% static 'country_floral_app/img/home-bg.jpg' %}')">-->
+<header class="intro-header" style="background-color: blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Country Floral</h1>
+                    <hr class="small">
+                    <span class="subheading">Personally Customized Floral Arrangements</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{%endblock%}
+
+{%block contents%}
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+            <div class="post-preview">
+                <h2 class="post-title">
+                    Our Promise
+                </h2>
+                <h3 class="post-subtitle">
+                    To create personal, unique floral arrangements.
+                </h3>
+                <p class="post-meta">There are no templates. There are no default designs.
+                    Each arrangement is invented the moment you order by one of our highly skilled, visionary florist.
+                </p>
+            </div>
+            <hr>
+            <div class="post-preview">
+                <h2 class="post-title">How it Works</h2>
+                <div class="row section">
+                    <div class="col-lg-3 post-preview" >
+                        <div class="circle" ></div>
+                        <i class="fa fa-info fa-3x" style="position:absolute; top:53px; left:55px;"></i>
+                        <h3 class="subtitle_for_center" style="margin-right: 110px;">Info</h3>
+                        <p class="post-meta">Tell us the recipient, delivery address, delivery date, and personalized message.</p>
+                    </div>
+                    <div class="col-lg-3 post-preview">
+                        <div class="circle" ></div>
+                        <i class="fa fa-credit-card fa-3x" style="position:absolute; top:55px; left:32px;"></i>
+                        <h3 class="subtitle_for_center" style="margin-right: 110px;">Price</h3>
+                        <p class="post-meta">Name your price. Our arrangements start at $35 (excluding tax and delivery charge). </p>
+                    </div>
+                    <div class="col-lg-3 post-preview">
+                        <div class="circle" ></div>
+                        <i class="fa fa-user fa-3x" style="position:absolute; top:55px; left:41px;"></i>
+                        <h3 class="subtitle_for_center" style="margin-right: 110px;">Your Input</h3>
+                        <p class="post-meta">Give us your input! Use keywords to help our design team make the perfect floral arrangement.</p>
+                    </div>
+                    <div class="col-lg-3 post-preview">
+                        <div class="circle" ></div>
+                        <i class="fa fa-thumbs-up fa-3x" style="position:absolute; top:55px; left:41px;"></i>
+                        <h3 class="subtitle_for_center" style="margin-right: 110px;">Creation</h3>
+                        <p class="post-meta">Using the information provided we will create a one of a kind arrangement.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="post-preview">
+                <h2 class="post-title" ><a href="{% url 'country_floral_app:country_floral_app.views.order' %}">Order Now</a></h2>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+
+<!--Custom JS-->
+{%block custom_js%}
+<script>
+</script>
+{%endblock%}
