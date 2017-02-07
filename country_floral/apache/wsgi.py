@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 import os, sys, site
 
 # add site dir
-site.addsitedir('/root/anaconda3/lib/python3.5/site-packages/')
+site.addsitedir('/root/.virtualenvs/jakobmorrison_env/lib/python3.5/site-packages/')
 
 # Calculate the path based on the location of the WSGI script.
 sys.path.append('/root/country_floral')
