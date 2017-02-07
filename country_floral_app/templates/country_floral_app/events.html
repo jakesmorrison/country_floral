@@ -1,0 +1,109 @@
+{%extends "country_floral_app/base.html" %}
+
+{%block header%}
+{% load staticfiles %}
+<header class="intro-header-small" style="background-image: url('{% static 'country_floral_app/img/background_4.jpg' %}')">
+<!--<header class="intro-header-small" style="background-color: blue">-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 class="site-heading">Events</h1>
+            </div>
+        </div>
+    </div>
+</header>
+{%endblock%}
+
+
+{%block contents%}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+            <div class="row">
+                <div class="col-lg-6" style="text-align:center;">
+                    <h2 class="post-title">Weddings</h2>
+                    <hr>
+                    <p class="post-meta">Test</p>
+                </div>
+                <div class="col-lg-6" style="text-align:center;">
+                    <div class="slideshow-container">
+                      <div class="mySlides">
+                        <div class="numbertext">1 / 3</div>
+                        <img class="slideshow-pic" src="{% static 'country_floral_app/img/photo4.jpg' %}">
+                        <div class="text">Caption Text</div>
+                      </div>
+
+                      <div class="mySlides">
+                        <div class="numbertext">2 / 3</div>
+                        <img class="slideshow-pic" src="{% static 'country_floral_app/img/photo4.jpg' %}" >
+                        <div class="text">Caption Two</div>
+                      </div>
+
+                      <div class="mySlides">
+                        <div class="numbertext">3 / 3</div>
+                        <img class="slideshow-pic" src="{% static 'country_floral_app/img/photo4.jpg' %}" >
+                        <div class="text">Caption Three</div>
+                      </div>
+
+                      <a class="prev" style="left: 0%;" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    </div>
+                    <br>
+                    <div style="text-align:center">
+                      <span class="dot" onclick="currentSlide(1)"></span>
+                      <span class="dot" onclick="currentSlide(2)"></span>
+                      <span class="dot" onclick="currentSlide(3)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+
+<!--Custom JS-->
+{%block custom_js%}
+<script>
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+<!--function showSlides(n) {-->
+  <!--var i;-->
+  <!--var slides = document.getElementsByClassName("mySlides");-->
+  <!--var dots = document.getElementsByClassName("dot");-->
+  <!--if (n > slides.length) {slideIndex = 1}-->
+  <!--if (n < 1) {slideIndex = slides.length}-->
+  <!--for (i = 0; i < slides.length; i++) {-->
+      <!--slides[i].style.display = "none";-->
+  <!--}-->
+  <!--for (i = 0; i < dots.length; i++) {-->
+      <!--dots[i].className = dots[i].className.replace(" active", "");-->
+  <!--}-->
+  <!--slides[slideIndex-1].style.display = "block";-->
+  <!--dots[slideIndex-1].className += " active";-->
+<!--}-->
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex> slides.length) {slideIndex = 1}
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 5000); // Change image every 2 seconds
+}
+
+</script>
+{%endblock%}

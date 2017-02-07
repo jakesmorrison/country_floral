@@ -1,0 +1,67 @@
+{%extends "country_floral_app/base.html" %}
+
+{%block header%}
+{% load staticfiles %}
+<header class="intro-header-small" style="background-image: url('{% static 'country_floral_app/img/background_4.jpg' %}')">
+<!--<header class="intro-header-small" style="background-color: blue">-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 class="site-heading">Contact</h1>
+            </div>
+        </div>
+    </div>
+</header>
+{%endblock%}
+
+{%block contents%}
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-lg-offset-2">
+            <h2  style="color: black;">Location</h2>
+            <div id="map"></div>
+        </div>
+        <div class="col-lg-5 col-lg-offset-0" style="">
+            <h2  style="color: black;">Information</h2>
+                <div class="col-lg-12 myinput">
+                    <label class="mylabel">Phone Number</label>
+                    <a class="form-control" href="tel:2084665694">(208)-466-5694</a>
+                </div>
+                <div class="col-lg-12 myinput">
+                    <label class="mylabel">Email</label>
+                    <a class="form-control" href="mailto:countryfloral1nampa@gmail.com?Subject=Country Floral Inquiry">countryfloral1nampa@gmail.com</a>
+                </div>
+                <div class="col-lg-12 myinput">
+                    <label class="mylabel">Address</label>
+                    <a class="form-control" href="http://maps.google.com/maps?q=16626 Franklin Blvd, Nampa, Idaho 83687-8212">16626 Franklin Blvd, Nampa, ID</a>
+
+                </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+<!--Custom JS-->
+{%block custom_js%}
+<script>
+      function initMap() {
+        var uluru = {lat: 43.6141585, lng: -116.5524327};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: "Country Floral",
+          animation: google.maps.Animation.DROP,
+        });
+      }
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAOqppGaRbIOe8PRYQszCGNE3rxoIesAA&callback=initMap">
+</script>
+
+{%endblock%}

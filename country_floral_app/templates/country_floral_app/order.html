@@ -1,7 +1,9 @@
 {%extends "country_floral_app/base.html" %}
 
 {%block header%}
-<header class="intro-header-small" style="background-color: blue">
+{% load staticfiles %}
+<header class="intro-header-small" style="background-image: url('{% static 'country_floral_app/img/background_4.jpg' %}')">
+<!--<header class="intro-header-small" style="background-color: blue">-->
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -44,9 +46,14 @@
                     <div class="row">
                         <div class="col-lg-12 myinput">
                             <label class="mylabel">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" maxlength="30">
+                            <input type="text" class="form-control phone" id="myphone" maxlength="30">
                         </div>
                     </div>
+                </div>
+
+                <div class="col-lg-6 col-lg-offset-3 col-xs-12 myinput insta insta-other" style="">
+                    <label class="mylabel">Instagram (optional)</label>
+                    <input type="text" class="form-control" id="insta" maxlength="30">
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 post-preview">
@@ -59,12 +66,20 @@
                             <input type="text" class="form-control" id="recipient" maxlength="30">
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 myinput">
+                            <label class="mylabel">Phone Number</label>
+                            <input type="text" class="form-control phone" id="custphone" maxlength="30">
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-lg-12 myinput">
                             <label class="mylabel">Delivery Address</label>
                             <button type="text" class="form-control text-left" id="address" maxlength="90">Click Here</button>
 
-                            <div class="messagepop pop" style="overflow-y: scroll; height:300px;">
+                            <div class="messagepop pop" style="overflow: auto;">
                                 <div class="col-lg-12 col-md-12 post-preview">
                                     <h2 class="post-title">Address</h2>
                                     <div class="col-lg-8">
@@ -85,7 +100,7 @@
                                         <div class="row">
                                             <div class="col-lg-12 myinput">
                                                 <label class="mylabel">State</label>
-                                                <input type="text" class="form-control" id="state" maxlength="30">
+                                                <input type="text" class="form-control" id="state" maxlength="2" style="text-transform:uppercase;">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -107,12 +122,12 @@
                             <input type="text" class="form-control datepicker" id="date">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12 myinput">
-                            <label class="mylabel">Other Delivery Info</label>
-                            <input type="text" class="form-control" id="other" maxlength="50">
-                        </div>
-                    </div>
+                    <!--<div class="row">-->
+                        <!--<div class="col-lg-12 myinput">-->
+                            <!--<label class="mylabel">Other Delivery Info</label>-->
+                            <!--<input type="text" class="form-control" id="other" maxlength="50">-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="row">
@@ -123,54 +138,96 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 post-preview">
+            <div class="col-lg-12 col-lg-offset-10 col-md-12 col-lg-offset-0 post-preview">
+                <h2 class="post-title">Design Keywords</h2>
+                <hr>
+                <p class="post-meta my-letter-spacing">Use keywords to help our design team make the perfect floral arrangement. Use the preset words or add your own. Be original. Be creative. We will do the same.  </p>
+                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+                    <label class="subheading" for="keywords"></label>
+                    <input type="text" class="input_selectize setting-min-width" name="keywords" id="keywords" placeholder="Select Design Keywords..." style="opacity: 1; position: relative; left: 0px;">
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-lg-offset-0 post-preview">
                 <h2 class="post-title">Price</h2>
                 <hr>
-                <p class="post-meta">Name your price. Use the picture gallery to check out what you get for your money. Our arrangements start at $35;
-                this does not include tax or delivery.</p>
+                <p class="post-meta my-letter-spacing">Name your price; floral bouquet price examples can be seen below (click image to enlarge). <br>Our arrangements start at $35; this does not include tax or delivery. </p>
+
                 <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                       <div class="callbacks_container">
-                          <ul class="rslides" id="slider4">
-                            <li>
-                              <img src="http://localhost:8000/static/country_floral_app/img/05.jpg" alt="">
-                              <p class="caption">Price: $35</p>
-                            </li>
-                            <li>
-                              <img src="http://localhost:8000/static/country_floral_app/img/001.jpg" alt="">
-                              <p class="caption">Price: $40</p>
-                            </li>
-                            <li>
-                              <img src="http://localhost:8000/static/country_floral_app/img/004.jpg" alt="">
-                              <p class="caption">Price: $45</p>
-                            </li>
-                          </ul>
+                    <div class="col-lg-12">
+                        <div class="floral-pictures col-lg-2 col-xs-2">
+                            <h4 class="post-meta">$35</h4>
+                            <hr>
+                            <img src="{% static 'country_floral_app/img/photo1.jpg' %}" class="img-rounded my-photo-borders popUp" width="100%" height="100%" data-val="photo1">
+                        </div>
+                        <div class="floral-pictures col-lg-2 col-xs-2">
+                            <h4 class="post-meta">$45</h4>
+                            <hr>
+                            <img src="{% static 'country_floral_app/img/photo2.jpg' %}" class="img-rounded my-photo-borders popUp" width="100%" height="100%" data-val="photo2">
+                        </div>
+                        <div class="floral-pictures col-lg-2 col-xs-2">
+                            <h4 class="post-meta">$55</h4>
+                            <hr>
+                            <img src="{% static 'country_floral_app/img/photo3.jpg' %}" class="img-rounded my-photo-borders popUp" width="100%" height="100%" data-val="photo3">
+                        </div>
+                        <div class="floral-pictures col-lg-2 col-xs-2">
+                            <h4 class="post-meta">$65</h4>
+                            <hr>
+                            <img src="{% static 'country_floral_app/img/photo4.jpg' %}" class="img-rounded my-photo-borders popUp" width="100%" height="100%" data-val="photo4">
+                        </div>
+                        <div class="floral-pictures col-lg-2 col-xs-2">
+                            <h4 class="post-meta">$75</h4>
+                            <hr>
+                            <img src="{% static 'country_floral_app/img/photo5.jpg' %}" class="img-rounded my-photo-borders popUp" width="100%" height="100%" data-val="photo5">
                         </div>
                     </div>
                 </div>
+                <br>
                 <div class="row">
-                    <div class="col-lg-4 col-lg-offset-4 myinput2">
-                        <label class="mylabel">Amount you want to pay</label>
+                    <div class="col-lg-6 col-lg-offset-3 myinput2">
+                        <label class="mylabel" style="font-size: 20px;">Amount you want to pay:</label>
                         <input type="text" class="form-control" id="cost" maxlength="30">
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-12 col-md-12 post-preview">
-                <h2 class="post-title">Keywords</h2>
-                <hr>
-                <p class="post-meta">Use keywords to help our design team make the perfect floral arrangement. Use the preset words or add your own. Be orbital. Be creative. We will do the same.  </p>
-                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
-                    <label class="subheading" for="keywords">Design Keywords (Mood, Season, Colors, Flowers):</label>
-                    <input type="text" class="input_selectize setting-min-width" name="keywords" id="keywords" placeholder="Select Keywords..." style="opacity: 1; position: relative; left: 0px;">
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3" style="text-align: center;">
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="form-group" id="payment">
+                            <input type="hidden" name="cmd" value="_xclick">
+                            <input type="hidden" name="business" value="YQWP6KD5YWSQ6">
+                            <input type="hidden" name="lc" value="US">
+                            <input type="hidden" name="button_subtype" value="services">
+                            <input type="hidden" name="no_note" value="0">
+                            <input type="hidden" name="cn" value="Add special instructions to the seller:">
+                            <input type="hidden" name="no_shipping" value="2">
+                            <input type="hidden" name="currency_code" value="USD">
+                            <input name="item_name" type="hidden" value="Floral Arrangement"/>
+                            <label for="total_amount">Amount Due:</label>
+                            <input id="total_amount" style="border-width: 0px; width: 100%; text-align: center; padding-bottom: 10px;" readonly="readonly">
+
+                            <input id="paypal-button" class="form-control" name="amount" value="" readonly="readonly" style="display:none;">
+                            <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
+                            <!--<input type="button" name="submit" alt="PayPal - The safer, easier way to pay online!" class="btn btn-primary">Pay Now</input>-->
+                            <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-pill-paypalcheckout-34px.png" border="0" name="submit">
+                        </form>
+                    </div>
+
+                    <div class="picture-pop-css popPicture closePic" style="overflow-y: scroll;" id="bigpic">
+                        <div class="col-lg-12 col-md-12 post-preview large-photo">
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
     </div>
-    <br>
-    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
-        <button type="button" class="btn btn-primary" id="payment" style="float:right;">Move on to payment</button>
-    </div>
 </div>
+
+
+
+
+
+
 
 {%endblock%}
 
@@ -183,6 +240,8 @@ var state = "";
 var city = "";
 var address = "";
 
+var delivery_fee = 0;
+var user_input = 0;
 
 var foo = {{ keyword_list|safe }};
 var myoptions = [];
@@ -224,19 +283,19 @@ $('#keywords').selectize({
 });
 
 $(function() {
-      $("#slider4").responsiveSlides({
-        auto: false,
-        pager: false,
-        nav: true,
-        speed: 500,
-        namespace: "callbacks",
-      });
+  $("#slider4").responsiveSlides({
+    auto: false,
+    pager: false,
+    nav: true,
+    speed: 500,
+    namespace: "callbacks",
+  });
 });
 
-$('.datepicker').datepicker();
+$(".datepicker").datepicker({ dateFormat: "yy-mm-dd" });
 
-$("#phone").mask("(999) 999-9999");
-$("#phone").on("blur", function() {
+$(".phone").mask("(999) 999-9999");
+$(".phone").on("blur", function() {
     var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
 
     if( last.length == 3 ) {
@@ -254,12 +313,11 @@ $.mask.definitions['~']='[05]';
 $.mask.definitions['-']='[05]';
 $("#cost").mask("$+~?-");
 $("#cost").on("blur", function() {
-       var val = $(this).val().slice(1);
-       if (parseInt(val) <35 ){
-             $(this).val("$35");
-       }
+   var val = $(this).val().slice(1);
+   if (parseInt(val) <35 ){
+         $(this).val("$35");
+   }
 });
-
 
 function deselect(e) {
   $('.pop').slideFadeToggle(function() {
@@ -267,8 +325,7 @@ function deselect(e) {
   });
 }
 
-$(function() {
-  $('#address').on('click', function() {
+$('#address').on('click', function() {
     if($(this).hasClass('selected')) {
       deselect($(this));
     } else {
@@ -276,14 +333,15 @@ $(function() {
       $('.pop').slideFadeToggle();
     }
     return false;
-  });
+});
 
-  $('.close').on('click', function() {
+$('.close').on('click', function() {
     zip = ($("#zip").val());
     state = ($("#state").val());
     city = ($("#city").val());
     street = ($("#street").val());
     address = street+" "+city+", "+state+" "+zip;
+
     if (address.length > 30){
         ($("#address").text(address.slice(0,30)+"..."));
     }
@@ -291,8 +349,8 @@ $(function() {
         ($("#address").text(address));
     }
     deselect($('#address'));
+    calc_distance(address);
     return false;
-  });
 });
 
 $.fn.slideFadeToggle = function(easing, callback) {
@@ -300,26 +358,107 @@ $.fn.slideFadeToggle = function(easing, callback) {
 };
 
 
-function send_email(url) {
+$('#cost').keypress(function() {
+    if (address.length > 0 & $("#fname").val().length > 0 & $("#lname").val().length > 0 & $("#email").val().length > 0 & $("#myphone").val().length > 0 & $("#custphone").val().length > 0 & $("#recipient").val().length > 0 & $("#date").val().length > 0){
+        user_input = this.value;
+        var dInput = this.value;
+        dInput = parseInt(dInput.replace("$",""));
+        if (dInput <35 ){
+            dInput = 35;
+        }
+        tax = (dInput*.06).toPrecision(3);
+        total = parseFloat(dInput) + parseFloat(tax) + parseFloat(delivery_fee);
+        total = total.toFixed(2);
+        my_string = "Tax: $"+tax+"   Delivery Fee: $"+delivery_fee+"   Total: $"+total;
+
+        $('#paypal-button').val(total);
+        $('#total_amount').val(my_string);
+
+    }
+    else{
+        if(delivery_fee==0){
+            $('#cost').val('Invalid or blank address.');
+        }
+        else{
+            <!--$('#paypal-button').val("Fill Out Information Above");-->
+            $('#cost').val('Fill Out Information Above');
+        }
+    }
+});
+
+function calculate_total(){
+    if (user_input !=0){
+        var dInput = user_input;
+        dInput = parseInt(dInput.replace("$",""));
+        if (dInput <35 ){
+            dInput = 35;
+        }
+        tax = (dInput*.06).toPrecision(3);
+        total = parseFloat(dInput) + parseFloat(tax) + parseFloat(delivery_fee);
+        total = total.toFixed(2);
+        my_string = "Tax: $"+tax+"   Delivery Fee: $"+delivery_fee+"   Total: $"+total;
+
+        $('#paypal-button').val(total);
+        $('#total_amount').val(my_string);
+    }
+}
+
+function get_data(url) {
     $.getJSON(url, function(chart_data) {
-        console.log("test 1111");
+        delivery_fee = chart_data.cost;
+        calculate_total();
     });
 }
 
+function calc_distance(a){
+    var address = "1910 W University Dr, Boise, ID 83725";
+    var address = a;
+    var start = "16626 Franklin Boulevard, Nampa, Idaho 83687-8212";
+    url_base = "{% url 'country_floral_app:get_distance' %}";
+    params = {'start': start, 'stop': address};
+    url = url_base + "?" + $.param( params );
+    get_data(url);
+}
 
-$(function() {
-  $('#payment').on('click', function() {
+$('.closePic').on('click', function() {
+    $('#bigpic').hide();
+});
+
+$('.popUp').on('click', function() {
+      var clickedvalue = $(this).data('val');
+      $('#bigpic').show();
+      if (clickedvalue == "photo1"){
+            $('.large-photo').html('<p class="post-meta" style="text-align:center;">$35</p> <img src="{% static "country_floral_app/img/photo1.jpg" %}" class="img-rounded my-photo-borders" width="100%" height="100%" data-val="photo1"> <button type="button" class="col-lg-12 col-xs-12 btn btn-primary" style="background-color:#0085A1; text-align:center;">Close</button>');
+      } else if(clickedvalue == "photo2"){
+              $('.large-photo').html('<p class="post-meta" style="text-align:center;">$45</p><br> <img src="{% static "country_floral_app/img/photo2.jpg" %}" class="img-rounded my-photo-borders" width="100%" height="100%" data-val="photo2"> <button type="button" class="col-lg-12 col-xs-12 btn btn-primary" style="background-color:#0085A1; text-align:center;">Close</button>');
+      } else if(clickedvalue == "photo3"){
+              $('.large-photo').html('<p class="post-meta" style="text-align:center;">$55</p><br> <img src="{% static "country_floral_app/img/photo3.jpg" %}" class="img-rounded my-photo-borders" width="100%" height="100%" data-val="photo3"> <button type="button" class="col-lg-12 col-xs-12 btn btn-primary" style="background-color:#0085A1; text-align:center;">Close</button>');
+      } else if(clickedvalue == "photo4"){
+              $('.large-photo').html('<p class="post-meta" style="text-align:center;">$65</p><br> <img src="{% static "country_floral_app/img/photo4.jpg" %}" class="img-rounded my-photo-borders" width="100%" height="100%" data-val="photo4"> <button type="button" class="col-lg-12 col-xs-12 btn btn-primary" style="background-color:#0085A1; text-align:center;">Close</button>');
+      } else if(clickedvalue == "photo5"){
+              $('.large-photo').html('<p class="post-meta" style="text-align:center;">$75</p><br> <img src="{% static "country_floral_app/img/photo5.jpg" %}" class="img-rounded my-photo-borders" width="100%" height="100%" data-val="photo5"> <button type="button" class="col-lg-12 col-xs-12 btn btn-primary" style="background-color:#0085A1; text-align:center;">Close</button>');
+      }
+});
+
+$('#payment').on('click', function() {
+    console.log("Test");
     url_base = "{% url 'country_floral_app:process' %}";
-    params = {'address': address, 'fname': $("#fname").val(), 'lname': $("#lname").val(), 'email': $("#email").val(), 'phone': $("#phone").val(),
-              'recipient': $("#recipient").val(), 'date': $("#date").val(), 'other': $("#other").val(), 'message': $("#message").val(),
-              'cost': $("#cost").val(),'keywords': $("#keywords").val()};
+    params = {'fname': $("#fname").val(), 'lname': $("#lname").val(), 'email': $("#email").val(), 'myphone': $("#myphone").val(), 'instagram': $("#insta").val(),
+              'recipient': $("#recipient").val(), 'custphone': $("#custphone").val(),'address': address, 'date': $('#date').val(), 'message': $("#message").val(),
+               'keywords': $("#keywords").val(), 'total': $("#paypal-button").val(),'delivery_fee': delivery_fee,'user_input': user_input};
     my_url = url_base + "?" + $.param( params );
     $.ajax({
         url: my_url,
         type: 'GET',
     });
-  });
 });
+
+function send_email(url) {
+    $.getJSON(url, function(chart_data) {
+
+    });
+}
 
 </script>
 {%endblock%}
+

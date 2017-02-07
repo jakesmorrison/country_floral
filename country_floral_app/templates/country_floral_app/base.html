@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+
     <title>Country Floral</title>
     {% load staticfiles %}
     <link href=" {% static 'country_floral_app/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -11,6 +13,7 @@
     <link href=" {% static 'country_floral_app/css/style.css' %}" rel="stylesheet">
     <link href=" {% static 'country_floral_app/css/slider.css' %}" rel="stylesheet">
     <link href=" {% static 'country_floral_app/css/responsiveslides.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css">
 </head>
 <body>
@@ -34,10 +37,16 @@
                     <a href="{% url 'country_floral_app:country_floral_app.views.index' %}">Home</a>
                 </li>
                 <li>
+                    <a href="{% url 'country_floral_app:country_floral_app.views.events' %}">Events</a>
+                </li>
+                <li>
                     <a href="{% url 'country_floral_app:country_floral_app.views.about' %}">About</a>
                 </li>
                 <li>
-                    <a href="{% url 'country_floral_app:country_floral_app.views.gallery' %}">Photo Gallery</a>
+                    <a href="{% url 'country_floral_app:country_floral_app.views.contact' %}">Contact</a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/country_floral/">Photo Gallery</a>
                 </li>
             </ul>
         </div>
@@ -60,23 +69,23 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
                     <li>
-                        <a href="#">
+                        <a href="https://www.instagram.com/country_floral/">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-circle fa-stack-2x fa-footer-circle"></i>
                                 <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://www.facebook.com/pg/countryfloralnampa/about/">
                             <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-circle fa-stack-2x fa-footer-circle"></i>
                                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                             </span>
                         </a>
                     </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Country Floral 2016</p>
+                <p class="copyright text-muted">Copyright &copy; Country Floral 2017</p>
             </div>
         </div>
     </div>
@@ -91,6 +100,7 @@
 <script src="{% static 'country_floral_app/js/responsiveslides.min.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
 <script src="{% static 'country_floral_app/js/jquery-mask.js' %}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <!--Custom JS-->
 {%block custom_js%}

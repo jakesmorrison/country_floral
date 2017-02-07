@@ -60,46 +60,6 @@ h3 {
   opacity: .7;
   }
 
-.next {
-  position: absolute;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  top: 60%;
-  left: 0;
-  opacity: 0.8;
-  z-index: 3;
-  text-indent: -9999px;
-  overflow: hidden;
-  text-decoration: none;
-  height: 50px;
-  width: 38px;
-  margin-top: -45px;
-    width: 0;
-  height: 0;
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-  border-left:30px solid black;
-  }
-
-.prev {
-  position: absolute;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  top: 60%;
-  left: 0;
-  opacity: 0.8;
-  z-index: 3;
-  text-indent: -9999px;
-  overflow: hidden;
-  text-decoration: none;
-  height: 50px;
-  width: 38px;
-  margin-top: -45px;
-    width: 0;
-  height: 0;
-  border:1px solid #8c8c8c;
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-  border-right:30px solid black;
-  }
 
 .callbacks_nav:active {
   opacity: 1.0;
