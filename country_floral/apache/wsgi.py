@@ -1,5 +1,7 @@
+#!/usr/bin/python3
+
 """
-WSGI config for jakobmorrison project.
+WSGI config for country floral project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
