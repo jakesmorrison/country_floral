@@ -20,8 +20,8 @@ sys.path.append('/root/country_floral/country_floral')
 #sys.path.append('/root')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'country_floral.apache.override'
 
-activate_env='/root/.virtualenvs/jakobmorrison_env/bin/activate_this.py'
-exec(open(activate_env).read())
+# activate_env='/root/.virtualenvs/jakobmorrison_env/bin/activate_this.py'
+# exec(open(activate_env).read())
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
