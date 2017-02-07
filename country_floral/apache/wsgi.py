@@ -22,6 +22,6 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'country_floral.apache.override'
 
 # activate_env='/root/.virtualenvs/jakobmorrison_env/bin/activate_this.py'
 # exec(open(activate_env).read())
-lp
+
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
