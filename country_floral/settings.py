@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'country_floral.wsgi.application'
+WSGI_APPLICATION = 'country_floral.apache.wsgi.application'
 
 
 # Database
@@ -120,3 +120,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/root/country_floral/static'
