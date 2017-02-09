@@ -77,7 +77,10 @@ def process(request):
     date = date_time[0]
     time = date_time[1]
 
-    order_number = int(max(list(Floral.objects.values_list("order_number", flat=True)))+1)
+    try:
+        order_number = int(max(list(Floral.objects.values_list("order_number", flat=True)))+1)
+    except:
+        order_number = 0
 
     s = Floral(
         order_number = order_number,
