@@ -54,6 +54,9 @@ def process(request):
     customer_phone = params["myphone"]
     instagram = params["instagram"]
 
+    if instagram == "":
+        instagram = "none"
+
     # Recipient Information
     recipient = params["recipient"]
     rec_phone_number = params["custphone"]
