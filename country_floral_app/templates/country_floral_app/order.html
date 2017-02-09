@@ -189,8 +189,9 @@
                         <input type="text" class="form-control" id="cost" maxlength="30">
                     </div>
                 </div>
+                {{ order_number|safe }}
                 <div class="row">
-                    <div class="col-lg-6 col-lg-offset-3" style="text-align: center;">
+                    <div class="col-lg-8 col-lg-offset-2" style="text-align: center;">
                         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="form-group" id="payment">
                             <input type="hidden" name="cmd" value="_xclick">
                             <input type="hidden" name="business" value="YQWP6KD5YWSQ6">
@@ -200,7 +201,7 @@
                             <input type="hidden" name="cn" value="Add special instructions to the seller:">
                             <input type="hidden" name="no_shipping" value="2">
                             <input type="hidden" name="currency_code" value="USD">
-                            <input name="item_name" type="hidden" value="Floral Arrangement"/>
+                            <input id="value_order_number" name="item_name" type="hidden" value="Floral Arrangement"/>
                             <label for="total_amount">Amount Due:</label>
                             <input id="total_amount" style="border-width: 0px; width: 100%; text-align: center; padding-bottom: 10px;" readonly="readonly">
 
@@ -441,7 +442,6 @@ $('.popUp').on('click', function() {
 });
 
 $('#payment').on('click', function() {
-    console.log("Test");
     url_base = "{% url 'country_floral_app:process' %}";
     params = {'fname': $("#fname").val(), 'lname': $("#lname").val(), 'email': $("#email").val(), 'myphone': $("#myphone").val(), 'instagram': $("#insta").val(),
               'recipient': $("#recipient").val(), 'custphone': $("#custphone").val(),'address': address, 'date': $('#date').val(), 'message': $("#message").val(),
@@ -450,14 +450,12 @@ $('#payment').on('click', function() {
     $.ajax({
         url: my_url,
         type: 'GET',
+        success: function (msg) {
+            var my_order_number = 0;
+            $('#value_order_number').val("Floral Arrangement: #" + my_order_number);
+        }
     });
 });
-
-function send_email(url) {
-    $.getJSON(url, function(chart_data) {
-
-    });
-}
 
 </script>
 {%endblock%}

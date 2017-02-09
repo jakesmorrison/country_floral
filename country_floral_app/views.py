@@ -46,7 +46,7 @@ def get_distance(request):
 
 def process(request):
     params = request.GET
-    print(params)
+
     # Customer Information
     fname = params["fname"]
     lname = params["lname"]
@@ -77,8 +77,10 @@ def process(request):
     date = date_time[0]
     time = date_time[1]
 
+    order_number = int(max(list(Floral.objects.values_list("order_number", flat=True)))+1)
+
     s = Floral(
-        order_number = int(max(list(Floral.objects.values_list("order_number", flat=True)))+1),
+        order_number = order_number,
         delivered = False,
         date_processed = date,
         time_processed = time,
@@ -99,9 +101,11 @@ def process(request):
     )
     s.save()
 
-    context ={}
+    context ={
+        "order_number": order_number,
+    }
     return JsonResponse(json.loads(json.dumps(context)))
-
+    # return render(request, 'country_floral_app/order.html', context)
 
 def about(request):
     context = {
