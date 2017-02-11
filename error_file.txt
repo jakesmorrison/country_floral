@@ -1,0 +1,2 @@
+17:16:47	2017-02-10	sdf	asdf	asdfas	(333) 333-3333	zxcv	(332) 323-2223	7216 Lima Drive Nampa, ID 83687	2017-02-23	asda	somber	66.30	8.00
+17:17:10	2017-02-10	sdf	asdf	asdfas	(333) 333-3333	zxcv	(332) 323-2223	7216 Lima Drive Nampa, ID 83687	2017-02-23	asda		87.50	8.00
