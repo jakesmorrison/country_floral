@@ -60,3 +60,4 @@ target/
 *.xml
 *.sqlite3
 *.scss
+error_file.txt
