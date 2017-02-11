@@ -49,29 +49,124 @@ def process(request):
     params = request.GET
 
     # Customer Information
-    fname = params["fname"]
-    lname = params["lname"]
-    email = params["email"]
-    customer_phone = params["myphone"]
-    instagram = params["instagram"]
+    try:
+        if params["fname"] == "":
+            fname = "none"
+        else:
+            fname = params["fname"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"fname error")
 
-    if instagram == "":
-        instagram = "none"
+    try:
+        if params["lname"] == "":
+            lname = "none"
+        else:
+            lname = params["lname"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"lname error")
+
+    try:
+        if params["email"] == "":
+            email = "none"
+        else:
+            email = params["email"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"email error")
+
+    try:
+        if params["myphone"] == "":
+            customer_phone = "none"
+        else:
+            customer_phone = params["myphone"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"customer_phone error")
+
+    try:
+        if params["instagram"] == "":
+            instagram = "none"
+        else:
+            instagram = params["instagram"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"instagram error")
+
 
     # Recipient Information
-    recipient = params["recipient"]
-    rec_phone_number = params["custphone"]
-    address = params["address"]
-    delivery_date = params["date"]
-    message = params["message"]
+    try:
+        if params["recipient"] == "":
+            recipient = "none"
+        else:
+            recipient = params["recipient"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"recipient error")
+
+    try:
+        if params["custphone"] == "":
+            rec_phone_number = "none"
+        else:
+            rec_phone_number = params["custphone"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"rec_phone_number error")
+
+    try:
+        if params["address"] == "":
+            address = "none"
+        else:
+            address = params["address"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"address error")
+
+    try:
+        if params["date"] == "":
+            delivery_date = "none"
+        else:
+            delivery_date = params["date"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"delivery_date error")
+
+    try:
+        if params["message"] == "":
+            message = "none"
+        else:
+            message = params["message"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"message error")
+
 
     # Design
-    keywords = params["keywords"]
+    try:
+        if params["keywords"] == "":
+            keywords = "none"
+        else:
+            keywords = params["keywords"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"keywords error")
+
 
     # Cost
-    total = params["total"]
-    delivery_fee = params["delivery_fee"]
-    user_input = params["user_input"].replace("$","").replace("_","")
+    try:
+        if params["total"] == "":
+            total = "none"
+        else:
+            total = params["total"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" +"total error")
+
+    try:
+        if params["delivery_fee"] == "":
+            delivery_fee = "none"
+        else:
+            delivery_fee = params["delivery_fee"]
+    except:
+        write_to_error_file(time + "\t" + date + "\t" + "delivery_fee error")
+
+    try:
+        if params["user_input"] == "":
+            user_input = "none"
+        else:
+            user_input = params["user_input"].replace("$","").replace("_","")
+    except:
+        write_to_error_file(time + "\t" + date + "\t" + "user_input error")
+
 
     # Time
     mountain = timezone('US/Mountain')
@@ -86,21 +181,16 @@ def process(request):
     except:
         order_number = 0
 
+
     my_error_string = time + "\t" + date + "\t" + fname + "\t" + lname + "\t" + email  + "\t" + customer_phone  + "\t" \
                       "" + recipient  + "\t" +  rec_phone_number  + "\t" + address  + "\t" +  delivery_date  + "\t" +  message  + "\t" \
                       "" + keywords  + "\t" + total  + "\t" + delivery_fee
 
-
+    write_to_error_file(my_error_string)
     # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     # my_path = os.path.join(BASE_DIR, 'error_file.txt')
     # from django.conf import settings
     # os.path.join(settings.MEDIA_ROOT, 'error_file.txt')
-    try:
-        with open("/root/database/error_file.txt", "a") as myfile:
-            myfile.write(my_error_string + "\n")
-    except:
-        pass
-
 
     s = Floral(
         order_number = order_number,
@@ -149,3 +239,10 @@ def events(request):
     context = {
     }
     return render(request, 'country_floral_app/events.html', context)
+
+def write_to_error_file(error_string):
+    try:
+        with open("/root/database/error_file.txt", "a") as myfile:
+            myfile.write(error_string + "\n")
+    except:
+        pass
