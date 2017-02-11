@@ -91,12 +91,15 @@ def process(request):
                       "" + keywords  + "\t" + total  + "\t" + delivery_fee
 
 
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    my_path = os.path.join(BASE_DIR, 'error_file.txt')
-
-    from django.conf import settings
-    with open(os.path.join(settings.MEDIA_ROOT, 'error_file.txt'), "a") as myfile:
-        myfile.write(my_error_string + "\n")
+    # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # my_path = os.path.join(BASE_DIR, 'error_file.txt')
+    # from django.conf import settings
+    # os.path.join(settings.MEDIA_ROOT, 'error_file.txt')
+    try:
+        with open("/root/database/error_file.txt", "a") as myfile:
+            myfile.write(my_error_string + "\n")
+    except:
+        pass
 
 
     s = Floral(
