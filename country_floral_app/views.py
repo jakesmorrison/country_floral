@@ -54,40 +54,40 @@ def process(request):
             fname = "none"
         else:
             fname = params["fname"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"fname error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"fname error" + str(e))
 
     try:
         if params["lname"] == "":
             lname = "none"
         else:
             lname = params["lname"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"lname error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"lname error" + str(e))
 
     try:
         if params["email"] == "":
             email = "none"
         else:
             email = params["email"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"email error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"email error" + str(e))
 
     try:
         if params["myphone"] == "":
             customer_phone = "none"
         else:
             customer_phone = params["myphone"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"customer_phone error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"customer_phone error" + str(e))
 
     try:
         if params["instagram"] == "":
             instagram = "none"
         else:
             instagram = params["instagram"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"instagram error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"instagram error" + str(e))
 
 
     # Recipient Information
@@ -96,40 +96,40 @@ def process(request):
             recipient = "none"
         else:
             recipient = params["recipient"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"recipient error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"recipient error" + str(e))
 
     try:
         if params["custphone"] == "":
             rec_phone_number = "none"
         else:
             rec_phone_number = params["custphone"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"rec_phone_number error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"rec_phone_number error" + str(e))
 
     try:
         if params["address"] == "":
             address = "none"
         else:
             address = params["address"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"address error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"address error" + str(e))
 
     try:
         if params["date"] == "":
             delivery_date = "none"
         else:
             delivery_date = params["date"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"delivery_date error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"delivery_date error" + str(e))
 
     try:
         if params["message"] == "":
             message = "none"
         else:
             message = params["message"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"message error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"message error" + str(e))
 
 
     # Design
@@ -138,8 +138,8 @@ def process(request):
             keywords = "none"
         else:
             keywords = params["keywords"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"keywords error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"keywords error" + str(e))
 
 
     # Cost
@@ -148,24 +148,24 @@ def process(request):
             total = "none"
         else:
             total = params["total"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" +"total error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" +"total error" + str(e))
 
     try:
         if params["delivery_fee"] == "":
             delivery_fee = "none"
         else:
             delivery_fee = params["delivery_fee"]
-    except:
-        write_to_error_file(time + "\t" + date + "\t" + "delivery_fee error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" + "delivery_fee error" + str(e))
 
     try:
         if params["user_input"] == "":
             user_input = "none"
         else:
             user_input = params["user_input"].replace("$","").replace("_","")
-    except:
-        write_to_error_file(time + "\t" + date + "\t" + "user_input error")
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" + "user_input error"  + str(e))
 
 
     # Time
@@ -191,28 +191,30 @@ def process(request):
     # my_path = os.path.join(BASE_DIR, 'error_file.txt')
     # from django.conf import settings
     # os.path.join(settings.MEDIA_ROOT, 'error_file.txt')
-
-    s = Floral(
-        order_number = order_number,
-        delivered = False,
-        date_processed = date,
-        time_processed = time,
-        customer_first_name = fname,
-        customer_last_name = lname,
-        customer_email = email,
-        customer_phone = customer_phone,
-        customer_instagram = instagram,
-        recipient_name = recipient,
-        recipient_phone = rec_phone_number,
-        delivery_address = address,
-        delivery_date = delivery_date,
-        delivery_message = message,
-        design_keywords = keywords,
-        floral_cost = int(user_input),
-        delivery_fee = float(delivery_fee),
-        total_cost = float(total)
-    )
-    s.save()
+    try:
+        s = Floral(
+            order_number = order_number,
+            delivered = False,
+            date_processed = date,
+            time_processed = time,
+            customer_first_name = fname,
+            customer_last_name = lname,
+            customer_email = email,
+            customer_phone = customer_phone,
+            customer_instagram = instagram,
+            recipient_name = recipient,
+            recipient_phone = rec_phone_number,
+            delivery_address = address,
+            delivery_date = delivery_date,
+            delivery_message = message,
+            design_keywords = keywords,
+            floral_cost = int(user_input),
+            delivery_fee = float(delivery_fee),
+            total_cost = float(total),
+        )
+        s.save()
+    except Exception as e:
+        write_to_error_file(time + "\t" + date + "\t" + "database error" + str(e))
 
     context ={
         "order_number": order_number,
