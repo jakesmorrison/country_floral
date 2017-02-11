@@ -94,7 +94,8 @@ def process(request):
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     my_path = os.path.join(BASE_DIR, 'error_file.txt')
 
-    with open(my_path, "a") as myfile:
+    from django.conf import settings
+    with open(os.path.join(settings.MEDIA_ROOT, 'error_file.txt'), "a") as myfile:
         myfile.write(my_error_string + "\n")
 
 
