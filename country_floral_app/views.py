@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from pytz import timezone
 
 from .models import Floral
+import os
 
 # Create your views here.
 
@@ -89,7 +90,11 @@ def process(request):
                       "" + recipient  + "\t" +  rec_phone_number  + "\t" + address  + "\t" +  delivery_date  + "\t" +  message  + "\t" \
                       "" + keywords  + "\t" + total  + "\t" + delivery_fee
 
-    with open("error_file.txt", "a") as myfile:
+
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    my_path = os.path.join(BASE_DIR, 'error_file.txt')
+
+    with open(my_path, "a") as myfile:
         myfile.write(my_error_string + "\n")
 
 
