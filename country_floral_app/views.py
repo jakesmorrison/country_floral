@@ -85,6 +85,14 @@ def process(request):
     except:
         order_number = 0
 
+    my_error_string = time + "\t" + date + "\t" + fname + "\t" + lname + "\t" + email  + "\t" + customer_phone  + "\t" \
+                      "" + recipient  + "\t" +  rec_phone_number  + "\t" + address  + "\t" +  delivery_date  + "\t" +  message  + "\t" \
+                      "" + keywords  + "\t" + total  + "\t" + delivery_fee
+
+    with open("error_file.txt", "a") as myfile:
+        myfile.write(my_error_string + "\n")
+
+
     s = Floral(
         order_number = order_number,
         delivered = False,
