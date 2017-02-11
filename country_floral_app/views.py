@@ -55,7 +55,7 @@ def process(request):
         else:
             fname = params["fname"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"fname error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"fname error" + str(e))
 
     try:
         if params["lname"] == "":
@@ -63,7 +63,7 @@ def process(request):
         else:
             lname = params["lname"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"lname error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"lname error" + str(e))
 
     try:
         if params["email"] == "":
@@ -71,7 +71,7 @@ def process(request):
         else:
             email = params["email"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"email error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"email error" + str(e))
 
     try:
         if params["myphone"] == "":
@@ -79,7 +79,7 @@ def process(request):
         else:
             customer_phone = params["myphone"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"customer_phone error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"customer_phone error" + str(e))
 
     try:
         if params["instagram"] == "":
@@ -87,7 +87,7 @@ def process(request):
         else:
             instagram = params["instagram"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"instagram error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"instagram error" + str(e))
 
 
     # Recipient Information
@@ -97,7 +97,7 @@ def process(request):
         else:
             recipient = params["recipient"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"recipient error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"recipient error" + str(e))
 
     try:
         if params["custphone"] == "":
@@ -105,7 +105,7 @@ def process(request):
         else:
             rec_phone_number = params["custphone"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"rec_phone_number error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"rec_phone_number error" + str(e))
 
     try:
         if params["address"] == "":
@@ -113,7 +113,7 @@ def process(request):
         else:
             address = params["address"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"address error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"address error" + str(e))
 
     try:
         if params["date"] == "":
@@ -121,7 +121,7 @@ def process(request):
         else:
             delivery_date = params["date"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"delivery_date error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"delivery_date error" + str(e))
 
     try:
         if params["message"] == "":
@@ -129,7 +129,7 @@ def process(request):
         else:
             message = params["message"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"message error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"message error" + str(e))
 
 
     # Design
@@ -139,7 +139,7 @@ def process(request):
         else:
             keywords = params["keywords"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"keywords error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"keywords error" + str(e))
 
 
     # Cost
@@ -149,7 +149,7 @@ def process(request):
         else:
             total = params["total"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" +"total error" + str(e))
+        write_to_error_file(time + " | " + date + " | " +"total error" + str(e))
 
     try:
         if params["delivery_fee"] == "":
@@ -157,7 +157,7 @@ def process(request):
         else:
             delivery_fee = params["delivery_fee"]
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" + "delivery_fee error" + str(e))
+        write_to_error_file(time + " | " + date + " | " + "delivery_fee error" + str(e))
 
     try:
         if params["user_input"] == "":
@@ -165,7 +165,7 @@ def process(request):
         else:
             user_input = params["user_input"].replace("$","").replace("_","")
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" + "user_input error"  + str(e))
+        write_to_error_file(time + " | " + date + " | " + "user_input error"  + str(e))
 
 
     # Time
@@ -182,9 +182,9 @@ def process(request):
         order_number = 0
 
 
-    my_error_string = time + "\t" + date + "\t" + fname + "\t" + lname + "\t" + email  + "\t" + customer_phone  + "\t" \
-                      "" + recipient  + "\t" +  rec_phone_number  + "\t" + address  + "\t" +  delivery_date  + "\t" +  message  + "\t" \
-                      "" + keywords  + "\t" + total  + "\t" + delivery_fee
+    my_error_string = time + " | " + date + " | " + fname + " | " + lname + " | " + email  + " | " + customer_phone  + " | " \
+                      "" + recipient  + " | " +  rec_phone_number  + " | " + address  + " | " +  delivery_date  + " | " +  message  + " | " \
+                      "" + keywords  + " | " + total  + " | " + delivery_fee
 
     write_to_error_file(my_error_string)
     # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -214,7 +214,7 @@ def process(request):
         )
         s.save()
     except Exception as e:
-        write_to_error_file(time + "\t" + date + "\t" + "database error" + str(e))
+        write_to_error_file(time + " | " + date + " | " + "database error" + str(e))
 
     context ={
         "order_number": order_number,
