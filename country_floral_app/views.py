@@ -39,7 +39,8 @@ def get_distance(request):
 
     try:
         params = request.GET
-        url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + params["start"] + "&destination=" + \
+        start = '16626 Franklin Boulevard, Nampa, Idaho 83687-8212'
+        url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + start + "&destination=" + \
               params["stop"] + "&key=AIzaSyAoLeCMmBMEkX7-UAwnbeWEWoQGLJSjFnI"
         url = url.replace(" ", "%20")
         response = urlopen(url)
@@ -51,7 +52,7 @@ def get_distance(request):
             cost = cost + int(distance - 3) * .5
 
     except Exception as e:
-        write_to_error_file(time + " | " + date + " | " +"addresss error: " + str(e))
+        write_to_error_file(time + " | " + date + " | " +"addresss error ("+params["stop"]+"): " + str(e))
         cost = 0
 
     context ={
