@@ -19,7 +19,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
-            <div class="col-lg-12 col-md-12 post-preview">
+            <div class="col-lg-12 col-md-12 post-preview disable_class">
                 <h2 class="post-title">Your Information</h2>
                 <hr>
                 <div class="col-lg-6">
@@ -82,11 +82,12 @@
                             <div class="messagepop pop" style="overflow: auto;">
                                 <div class="col-lg-12 col-md-12 post-preview">
                                     <h2 class="post-title">Address</h2>
+                                    <h4 class="post-meta">Please fill in your address and click "close".</h4>
                                     <div class="col-lg-8">
                                         <div class="row">
                                             <div class="col-lg-12 myinput">
                                                 <label class="mylabel">Street</label>
-                                                <input type="text" class="form-control" id="street" maxlength="30">
+                                                <input type="text" class="form-control" id="street" maxlength="70">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -116,7 +117,7 @@
 
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row disable_class">
                         <div class="col-lg-12 myinput">
                             <label class="mylabel">Delivery Date</label>
                             <input type="text" class="form-control datepicker" id="date">
@@ -129,7 +130,7 @@
                         <!--</div>-->
                     <!--</div>-->
                 </div>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-6 disable_class">
                     <div class="row">
                         <div class="col-lg-12 myinput">
                             <label class="mylabel">Personalized Message</label>
@@ -138,7 +139,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-lg-offset-10 col-md-12 col-lg-offset-0 post-preview">
+            <div class="col-lg-12 col-lg-offset-10 col-md-12 col-lg-offset-0 post-preview disable_class">
                 <h2 class="post-title">Design Keywords</h2>
                 <hr>
                 <p class="post-meta my-letter-spacing">Use keywords to help our design team make the perfect floral arrangement. Use the preset words or add your own. Be original. Be creative. We will do the same.  </p>
@@ -148,7 +149,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-lg-offset-0 post-preview">
+            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-lg-offset-0 post-preview disable_class">
                 <h2 class="post-title">Price</h2>
                 <hr>
                 <p class="post-meta my-letter-spacing">Name your price; floral bouquet price examples can be seen below (click image to enlarge). <br>Our arrangements start at $35; this does not include tax or delivery. </p>
@@ -183,14 +184,14 @@
                     </div>
                 </div>
                 <br>
-                <div class="row">
+                <div class="row disable_class">
                     <div class="col-lg-6 col-lg-offset-3 myinput2">
                         <label class="mylabel" style="font-size: 20px;">Amount you want to pay:</label>
                         <input type="text" class="form-control" id="cost" maxlength="30">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2" style="text-align: center;">
+                <div class="row disable_class">
+                    <div class="col-lg-8 col-lg-offset-2 payment-button" style="text-align: center;">
                         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="form-group" id="payment">
                             <input type="hidden" name="cmd" value="_xclick">
                             <input type="hidden" name="business" value="YQWP6KD5YWSQ6">
@@ -211,7 +212,7 @@
                         </form>
                     </div>
 
-                    <div class="picture-pop-css popPicture closePic" style="overflow-y: scroll;" id="bigpic">
+                    <div class="picture-pop-css popPicture closePic disable_class" style="overflow-y: scroll;" id="bigpic">
                         <div class="col-lg-12 col-md-12 post-preview large-photo">
                         </div>
                     </div>
@@ -246,6 +247,7 @@ var user_input = 0;
 var foo = {{ keyword_list|safe }};
 var myoptions = [];
 var myoptgroups = [];
+
 for (var key in foo) {
     if (foo.hasOwnProperty(key)) {
         if(key != "occasion"){
@@ -258,6 +260,13 @@ for (var key in foo) {
         }
     }
 }
+
+$( document ).ready(function() {
+    $('.payment-button').hide();
+    $('.messagepop').hide();
+});
+
+
 
 $('#keywords').selectize({
     plugins: ['remove_button'],
@@ -319,20 +328,17 @@ $("#cost").on("blur", function() {
    }
 });
 
-function deselect(e) {
-  $('.pop').slideFadeToggle(function() {
-    e.removeClass('selected');
-  });
-}
-
 $('#address').on('click', function() {
-    if($(this).hasClass('selected')) {
-      deselect($(this));
-    } else {
-      $(this).addClass('selected');
-      $('.pop').slideFadeToggle();
-    }
-    return false;
+    delivery_fee = 0;
+    user_input = 0;
+
+    $('#paypal-button').val(0);
+    $('#total_amount').val('');
+    $('#cost').val('');
+    $('.payment-button').hide();
+
+    $('.messagepop').show();
+    $(".disable_class").addClass("disabledbutton");
 });
 
 $('.close').on('click', function() {
@@ -341,14 +347,14 @@ $('.close').on('click', function() {
     city = ($("#city").val());
     street = ($("#street").val());
     address = street+" "+city+", "+state+" "+zip;
-
-    if (address.length > 30){
+    if (address.length > 20){
         ($("#address").text(address.slice(0,30)+"..."));
     }
     else{
         ($("#address").text(address));
     }
-    deselect($('#address'));
+    $(".disable_class").removeClass("disabledbutton");
+    $('.messagepop').hide();
     calc_distance(address);
     return false;
 });
@@ -359,7 +365,9 @@ $.fn.slideFadeToggle = function(easing, callback) {
 
 
 $('#cost').keypress(function() {
-    if (address.length > 0 & $("#fname").val().length > 0 & $("#lname").val().length > 0 & $("#email").val().length > 0 & $("#myphone").val().length > 0 & $("#custphone").val().length > 0 & $("#recipient").val().length > 0 & $("#date").val().length > 0){
+    if (delivery_fee > 0 & address.length > 0 & $("#fname").val().length > 0 & $("#lname").val().length > 0 & $("#email").val().length > 0 & $("#myphone").val().length > 13 & $("#custphone").val().length > 13 & $("#recipient").val().length > 0 & $("#date").val().length > 0){
+        $('.payment-button').show();
+
         user_input = this.value;
         var dInput = this.value;
         dInput = parseInt(dInput.replace("$",""));
@@ -373,7 +381,6 @@ $('#cost').keypress(function() {
 
         $('#paypal-button').val(total);
         $('#total_amount').val(my_string);
-
     }
     else{
         if(delivery_fee==0){
@@ -386,32 +393,14 @@ $('#cost').keypress(function() {
     }
 });
 
-function calculate_total(){
-    if (user_input !=0){
-        var dInput = user_input;
-        dInput = parseInt(dInput.replace("$",""));
-        if (dInput <35 ){
-            dInput = 35;
-        }
-        tax = (dInput*.06).toPrecision(3);
-        total = parseFloat(dInput) + parseFloat(tax) + parseFloat(delivery_fee);
-        total = total.toFixed(2);
-        my_string = "Tax: $"+tax+"   Delivery Fee: $"+delivery_fee+"   Total: $"+total;
-
-        $('#paypal-button').val(total);
-        $('#total_amount').val(my_string);
-    }
-}
 
 function get_data(url) {
     $.getJSON(url, function(chart_data) {
         delivery_fee = chart_data.cost;
-        calculate_total();
     });
 }
 
 function calc_distance(a){
-    var address = "1910 W University Dr, Boise, ID 83725";
     var address = a;
     var start = "16626 Franklin Boulevard, Nampa, Idaho 83687-8212";
     url_base = "{% url 'country_floral_app:get_distance' %}";
