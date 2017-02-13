@@ -27,17 +27,23 @@ def order(request):
     return render(request, 'country_floral_app/order.html', context)
 
 def get_distance(request):
-    params = request.GET
-    url = "https://maps.googleapis.com/maps/api/directions/json?origin="+params["start"]+"&destination="+params["stop"]+"&key=AIzaSyAoLeCMmBMEkX7-UAwnbeWEWoQGLJSjFnI"
-    url = url.replace(" ","%20")
-    response = urlopen(url)
-    encoding = response.info().get_content_charset('utf8')
-    data = json.loads(response.read().decode(encoding))
-    distance = float((data["routes"][0]["legs"][0]["distance"]["text"]).split(" ")[0])
-
     cost = cfg.CONFIG.BASE_DEL_FEE
-    if distance > 3:
-        cost = cost + int(distance - 3)*.5
+    try:
+        params = request.GET
+        url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + params["start"] + "&destination=" + \
+              params["stop"] + "&key=AIzaSyAoLeCMmBMEkX7-UAwnbeWEWoQGLJSjFnI"
+        url = url.replace(" ", "%20")
+        response = urlopen(url)
+        encoding = response.info().get_content_charset('utf8')
+        data = json.loads(response.read().decode(encoding))
+        distance = float((data["routes"][0]["legs"][0]["distance"]["text"]).split(" ")[0])
+
+        if distance > 3:
+            cost = cost + int(distance - 3) * .5
+
+    except Exception as e:
+        write_to_error_file(time + " | " + date + " | " +"addresss error: " + str(e))
+        cost = 0
 
     context ={
         "cost": ("%.2f"%(cost)),
