@@ -28,6 +28,15 @@ def order(request):
 
 def get_distance(request):
     cost = cfg.CONFIG.BASE_DEL_FEE
+
+    # Time
+    mountain = timezone('US/Mountain')
+    mountain_time = datetime.now(mountain)
+    date_time = mountain_time.strftime('%Y-%m-%d_%H:%M:%S').split("_")
+
+    date = date_time[0]
+    time = date_time[1]
+
     try:
         params = request.GET
         url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + params["start"] + "&destination=" + \
@@ -53,6 +62,15 @@ def get_distance(request):
 
 def process(request):
     params = request.GET
+
+    # Time
+    mountain = timezone('US/Mountain')
+    mountain_time = datetime.now(mountain)
+    date_time = mountain_time.strftime('%Y-%m-%d_%H:%M:%S').split("_")
+
+    date = date_time[0]
+    time = date_time[1]
+
 
     # Customer Information
     try:
@@ -174,13 +192,6 @@ def process(request):
         write_to_error_file(time + " | " + date + " | " + "user_input error"  + str(e))
 
 
-    # Time
-    mountain = timezone('US/Mountain')
-    mountain_time = datetime.now(mountain)
-    date_time = mountain_time.strftime('%Y-%m-%d_%H:%M:%S').split("_")
-
-    date = date_time[0]
-    time = date_time[1]
 
     try:
         order_number = int(max(list(Floral.objects.values_list("order_number", flat=True)))+1)
