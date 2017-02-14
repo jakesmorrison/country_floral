@@ -51,8 +51,16 @@ def get_distance(request):
         if distance > 3:
             cost = cost + int(distance - 3) * .5
 
+        error_string  = ""
+        for key,val in params.items():
+            error_string = error_string +""+key + ":" + val + "  |  "
+        write_to_error_file(time + " | " + date + " | " +"addresss pass ("+error_string+"): ")
+
     except Exception as e:
-        write_to_error_file(time + " | " + date + " | " +"addresss error ("+params["stop"]+"): " + str(e))
+        error_string  = ""
+        for key,val in params.items():
+            error_string = error_string +""+key + ":" + val + "  |  "
+        write_to_error_file(time + " | " + date + " | " +"addresss error ("+error_string+"): " + str(e))
         cost = 0
 
     context ={
@@ -200,7 +208,7 @@ def process(request):
         else:
             user_input = params["user_input"].replace("$","").replace("_","")
     except Exception as e:
-        write_to_error_file(time + " | " + date + " | " + "user_input error"  + str(e))
+        write_to_error_file(time + " | " + date + " | " + "user_input error: "  + str(e))
         user_input = 0
 
 
@@ -209,12 +217,13 @@ def process(request):
     except:
         order_number = 0
 
-
-    my_error_string = time + " | " + date + " | " + fname + " | " + lname + " | " + email  + " | " + customer_phone  + " | " \
-                      "" + recipient  + " | " +  rec_phone_number  + " | " + address  + " | " +  delivery_date  + " | " +  message  + " | " \
-                      "" + keywords  + " | " + total  + " | " + delivery_fee
-
-    write_to_error_file(my_error_string)
+    try:
+        my_error_string = time + " | " + date + " | " + fname + " | " + lname + " | " + email  + " | " + customer_phone  + " | " \
+                          "" + recipient  + " | " +  rec_phone_number  + " | " + address  + " | " +  delivery_date  + " | " +  message  + " | " \
+                          "" + keywords  + " | " + total  + " | " + delivery_fee
+        write_to_error_file(my_error_string)
+    except:
+        write_to_error_file(time + " | " + date + " | " + "error_string_error: "  + str(e))
     # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     # my_path = os.path.join(BASE_DIR, 'error_file.txt')
     # from django.conf import settings

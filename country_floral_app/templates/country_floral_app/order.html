@@ -224,12 +224,6 @@
     </div>
 </div>
 
-
-
-
-
-
-
 {%endblock%}
 
 <!--Custom JS-->
@@ -404,7 +398,8 @@ function calc_distance(a){
     var address = a;
     var start = "16626 Franklin Boulevard, Nampa, Idaho 83687-8212";
     url_base = "{% url 'country_floral_app:get_distance' %}";
-    params = {'start': start, 'stop': address};
+    params = {'fname': $("#fname").val(), 'lname': $("#lname").val(), 'email': $("#email").val(), 'myphone': $("#myphone").val(),
+              'recipient': $("#recipient").val(), 'custphone': $("#custphone").val(), 'stop': address};
     url = url_base + "?" + $.param( params );
     get_data(url);
 }
