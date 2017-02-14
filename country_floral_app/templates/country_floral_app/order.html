@@ -186,7 +186,7 @@
                 <br>
                 <div class="row disable_class">
                     <div class="col-lg-6 col-lg-offset-3 myinput2">
-                        <label class="mylabel" style="font-size: 20px;">Amount you want to pay:</label>
+                        <label class="mylabel" style="font-size: 20px;">Amount you want to pay (Increments of $5):</label>
                         <input type="text" class="form-control" id="cost" maxlength="30">
                     </div>
                 </div>
@@ -358,7 +358,7 @@ $.fn.slideFadeToggle = function(easing, callback) {
 };
 
 
-$('#cost').keypress(function() {
+$('#cost').keyup(function() {
     if (delivery_fee > 0 & address.length > 0 & $("#fname").val().length > 0 & $("#lname").val().length > 0 & $("#email").val().length > 0 & $("#myphone").val().length > 13 & $("#custphone").val().length > 13 & $("#recipient").val().length > 0 & $("#date").val().length > 0){
         $('.payment-button').show();
 
@@ -372,6 +372,10 @@ $('#cost').keypress(function() {
         total = parseFloat(dInput) + parseFloat(tax) + parseFloat(delivery_fee);
         total = total.toFixed(2);
         my_string = "Tax: $"+tax+"   Delivery Fee: $"+delivery_fee+"   Total: $"+total;
+
+
+        console.log(user_input);
+        console.log(total);
 
         $('#paypal-button').val(total);
         $('#total_amount').val(my_string);

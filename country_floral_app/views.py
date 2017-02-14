@@ -185,8 +185,8 @@ def process(request):
 
     # Cost
     try:
-        if params["total"] == "":
-            total = "none"
+        if params["total"] == "" or params["total"] == "NaN" or type(params["total"]) is not int:
+            total = 0
         else:
             total = params["total"]
     except Exception as e:
@@ -194,8 +194,8 @@ def process(request):
         total = 0
 
     try:
-        if params["delivery_fee"] == "":
-            delivery_fee = "none"
+        if params["delivery_fee"] == "" or type(params["delivery_fee"]) is not int:
+            delivery_fee = 0
         else:
             delivery_fee = params["delivery_fee"]
     except Exception as e:
@@ -203,7 +203,7 @@ def process(request):
         delivery_fee = 0
 
     try:
-        if params["user_input"] == "":
+        if params["user_input"] == "" or type(params["delivery_fee"]) is not int:
             user_input = 0
         else:
             user_input = params["user_input"].replace("$","").replace("_","")
@@ -220,9 +220,9 @@ def process(request):
     try:
         my_error_string = time + " | " + date + " | " + fname + " | " + lname + " | " + email  + " | " + customer_phone  + " | " \
                           "" + recipient  + " | " +  rec_phone_number  + " | " + address  + " | " +  delivery_date  + " | " +  message  + " | " \
-                          "" + keywords  + " | " + total  + " | " + delivery_fee
+                          "" + keywords  + " | " + str(total)  + " | " + str(delivery_fee)
         write_to_error_file(my_error_string)
-    except:
+    except Exception as e:
         write_to_error_file(time + " | " + date + " | " + "error_string_error: "  + str(e))
     # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     # my_path = os.path.join(BASE_DIR, 'error_file.txt')
