@@ -80,6 +80,8 @@ def process(request):
     date = date_time[0]
     time = date_time[1]
 
+    print(params)
+
 
     # Customer Information
     try:
@@ -185,7 +187,7 @@ def process(request):
 
     # Cost
     try:
-        if params["total"] == "" or params["total"] == "NaN" or type(params["total"]) is not int:
+        if params["total"] == "" or params["total"] == "NaN":
             total = 0
         else:
             total = params["total"]
@@ -194,7 +196,7 @@ def process(request):
         total = 0
 
     try:
-        if params["delivery_fee"] == "" or type(params["delivery_fee"]) is not int:
+        if params["delivery_fee"] == "":
             delivery_fee = 0
         else:
             delivery_fee = params["delivery_fee"]
@@ -203,7 +205,7 @@ def process(request):
         delivery_fee = 0
 
     try:
-        if params["user_input"] == "" or type(params["delivery_fee"]) is not int:
+        if params["user_input"] == "":
             user_input = 0
         else:
             user_input = params["user_input"].replace("$","").replace("_","")
