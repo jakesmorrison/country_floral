@@ -191,33 +191,14 @@
                     </div>
                 </div>
                 <div class="row disable_class">
-                    <div class="col-lg-8 col-lg-offset-2 payment-button" style="text-align: center;">
-                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="form-group" id="payment">
-                            <input type="hidden" name="cmd" value="_xclick">
-                            <input type="hidden" name="business" value="YQWP6KD5YWSQ6">
-                            <input type="hidden" name="lc" value="US">
-                            <input type="hidden" name="button_subtype" value="services">
-                            <input type="hidden" name="no_note" value="0">
-                            <input type="hidden" name="cn" value="Add special instructions to the seller:">
-                            <input type="hidden" name="no_shipping" value="2">
-                            <input type="hidden" name="currency_code" value="USD">
-                            <input id="value_order_number" name="item_name" type="hidden" value="Floral Arrangement"/>
-                            <label for="total_amount">Amount Due:</label>
-                            <textarea id="total_amount" style="border-width: 0px; width: 100%; text-align: center; padding-bottom: 10px;" readonly="readonly"></textarea>
-
-                            <input id="paypal-button" class="form-control" name="amount" value="" readonly="readonly" style="display:none;">
-                            <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-                            <!--<input type="button" name="submit" alt="PayPal - The safer, easier way to pay online!" class="btn btn-primary">Pay Now</input>-->
-                            <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-pill-paypalcheckout-34px.png" border="0" name="submit">
-                        </form>
+                    <div class="col-lg-8 col-lg-offset-2 confirm-button" style="text-align: center;">
+                        <textarea id="total_amount" style="border-width: 0px; width: 100%; text-align: center; padding-bottom: 10px;" readonly="readonly"></textarea>
+                        <button type="button" class="btn btn-primary cont_button">Continue</button>
                     </div>
-
                     <div class="picture-pop-css popPicture closePic disable_class" style="overflow-y: scroll;" id="bigpic">
                         <div class="col-lg-12 col-md-12 post-preview large-photo">
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -237,11 +218,13 @@ var address = "";
 
 var delivery_fee = 0;
 var user_input = 0;
+var total = 0;
 
 var foo = {{ keyword_list|safe }};
 var myoptions = [];
 var myoptgroups = [];
 
+<!--Design keys entry-->
 for (var key in foo) {
     if (foo.hasOwnProperty(key)) {
         if(key != "occasion"){
@@ -256,12 +239,12 @@ for (var key in foo) {
 }
 
 $( document ).ready(function() {
-    $('.payment-button').hide();
+    $('.confirm-button').hide();
     $('.messagepop').hide();
 });
 
 
-
+<!--Design keyword settings-->
 $('#keywords').selectize({
     plugins: ['remove_button'],
     delimiter: ',',
@@ -285,15 +268,6 @@ $('#keywords').selectize({
     }
 });
 
-$(function() {
-  $("#slider4").responsiveSlides({
-    auto: false,
-    pager: false,
-    nav: true,
-    speed: 500,
-    namespace: "callbacks",
-  });
-});
 
 $(".datepicker").datepicker({ dateFormat: "yy-mm-dd" });
 
@@ -326,10 +300,10 @@ $('#address').on('click', function() {
     delivery_fee = 0;
     user_input = 0;
 
-    $('#paypal-button').val(0);
+    total = 0;
     $('#total_amount').val('');
     $('#cost').val('');
-    $('.payment-button').hide();
+    $('.confirm-button').hide();
 
     $('.messagepop').show();
     $(".disable_class").addClass("disabledbutton");
@@ -360,7 +334,7 @@ $.fn.slideFadeToggle = function(easing, callback) {
 
 $('#cost').keyup(function() {
     if (delivery_fee > 0 & address.length > 0 & $("#fname").val().length > 0 & $("#lname").val().length > 0 & $("#email").val().length > 0 & $("#myphone").val().length > 13 & $("#custphone").val().length > 13 & $("#recipient").val().length > 0 & $("#date").val().length > 0){
-        $('.payment-button').show();
+        $('.confirm-button').show();
 
         user_input = this.value;
         var dInput = this.value;
@@ -373,11 +347,6 @@ $('#cost').keyup(function() {
         total = total.toFixed(2);
         my_string = "Tax: $"+tax+"   Delivery Fee: $"+delivery_fee+"   Total: $"+total;
 
-
-        <!--console.log(user_input);-->
-        <!--console.log(total);-->
-
-        $('#paypal-button').val(total);
         $('#total_amount').val(my_string);
     }
     else{
@@ -385,7 +354,6 @@ $('#cost').keyup(function() {
             $('#cost').val('Invalid or blank address.');
         }
         else{
-            <!--$('#paypal-button').val("Fill Out Information Above");-->
             $('#cost').val('Fill Out Information Above');
         }
     }
@@ -428,11 +396,11 @@ $('.popUp').on('click', function() {
       }
 });
 
-$('#payment').on('click', function() {
+$('.cont_button').on('click', function() {
     url_base = "{% url 'country_floral_app:process' %}";
     params = {'fname': $("#fname").val(), 'lname': $("#lname").val(), 'email': $("#email").val(), 'myphone': $("#myphone").val(), 'instagram': $("#insta").val(),
               'recipient': $("#recipient").val(), 'custphone': $("#custphone").val(),'address': address, 'date': $('#date').val(), 'message': $("#message").val(),
-               'keywords': $("#keywords").val(), 'total': $("#paypal-button").val(),'delivery_fee': delivery_fee,'user_input': user_input};
+               'keywords': $("#keywords").val(), 'total': total,'delivery_fee': delivery_fee,'user_input': user_input};
     my_url = url_base + "?" + $.param( params );
     $.ajax({
         url: my_url,
@@ -440,6 +408,7 @@ $('#payment').on('click', function() {
         success: function (msg) {
             var my_order_number = 0;
             $('#value_order_number').val("Floral Arrangement: #" + my_order_number);
+            window.location.href = "{% url 'country_floral_app:confirm' %}";
         }
     });
 });

@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Floral(models.Model):
-    order_number = models.IntegerField(default=000)
+    order_number = models.IntegerField(default=000, unique=True)
 
     delivered = models.BooleanField(default=False)
 

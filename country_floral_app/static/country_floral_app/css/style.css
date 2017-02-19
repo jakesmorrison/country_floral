@@ -593,6 +593,7 @@ label {
     cursor: hand;
 }
 
+
 .picture-pop-css {
   background-color:white;
   border:1px solid black;
@@ -620,7 +621,7 @@ label {
     right: 0;
     margin: auto;
     background-color: white;
-    width: 75%;
+    width: 60%;
     margin-top: 10px;
     border-radius: 3px;
 }
@@ -680,6 +681,7 @@ label {
     .myinput {
         width: 100%;
     }
+
 }
 
 @media screen and (min-width: 321px) and (max-width: 500px) {
@@ -688,6 +690,11 @@ label {
     }
     .navbar-brand {
         font-size: 18px;
+    }
+    .confirm_text{
+        color: #0085A1;
+        content: ' ';
+        display: block;
     }
 
 }
@@ -699,6 +706,13 @@ label {
      .navbar-brand {
         font-size: 18px;
     }
+
+    .confirm_text{
+        color: #0085A1;
+        content: ' ';
+        display: block;
+    }
+
 }
 
 
@@ -801,6 +815,13 @@ body {font-family: Verdana,sans-serif;margin:0}
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
+
+  .confirm_text{
+    color: #0085A1;
+    content: ' ';
+    display: block;
+    }
+
 }
 
 
@@ -827,7 +848,25 @@ input[type=text], textarea[type=text]{
 
 input[type=text]:focus, textarea[type=text]:focus {
   box-shadow: 0 0 5px #0085A1;
-  padding: 3px 0px 3px 3px;
+  /*padding: 3px 0px 3px 3px;*/
   margin: 5px 1px 3px 0px;
   border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.cont_button{
+    color: #fff;
+    background-color: #0085A1;
+    border-color: #204d74;
+    border-radius: 3px;
+}
+
+.cont_button:hover{
+    color: #fff;
+    background-color: #015f79;
+    border-color: #204d74;
+    border-radius: 3px;
+}
+
+.confirm_text{
+    color: #0085A1;
 }

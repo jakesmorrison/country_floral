@@ -1,0 +1,97 @@
+{%extends "country_floral_app/base.html" %}
+
+{%block header%}
+{% load staticfiles %}
+<header class="intro-header-small" style="background-image: url('{% static 'country_floral_app/img/background_4.jpg' %}')">
+<!--<header class="intro-header-small" style="background-color: blue">-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 class="site-heading">Confirmation</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+{%endblock%}
+
+{%block contents%}
+
+
+
+<!--customer_email': 'jakesmorrison4@gmail.com',-->
+ <!--'design_keywords': 'rich,colorful,tones',-->
+ <!--'floral_cost': Decimal('65.00'),-->
+ <!--'id': 2,-->
+ <!--'order_number': 1,-->
+ <!--'time_processed': datetime.time(9, 46, 16),-->
+
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2" style="text-align: center;">
+            <h4 class="post-title">Please verify that the information you entered is correct.</h4>
+            <div class="col-lg-12 col-lg-offset-0 col-xs-12"  style="text-align: center;">
+                <h2 class="post-title">Customer</h2>
+                <h4 class="post-meta" style="text-align:left">Customer First Name : <span class="confirm_text">{{customer_first_name|safe}}</span><h4/>
+                <h4 class="post-meta" style="text-align:left">Customer Last Name : <span class="confirm_text">{{customer_last_name|safe}}</span><h4/>
+                <h4 class="post-meta" style="text-align:left">Customer Email : <span class="confirm_text">{{customer_email|safe}}</span><h4/>
+                <h4 class="post-meta" style="text-align:left">Customer Phone Number : <span class="confirm_text">{{customer_phone|safe}}</span><h4/>
+                <h4 class="post-meta" style="text-align:left">Customer Instagram : <span class="confirm_text">{{customer_instagram|safe}}</span><h4/>
+                <hr>
+                <h2 class="post-title">Recipient</h2>
+                <h4 class="post-meta" style="text-align:left">Recipient Name : <span class="confirm_text">{{recipient_name|safe}}</span><h4/>
+                <h4 class="post-meta" style="text-align:left">Recipient Phone Number : <span class="confirm_text">{{recipient_phone|safe}}</span><h4/>
+                <h4 class="post-meta" style="text-align:left">Delivery Address : <span class="confirm_text">{{delivery_address|safe}}</span><h4/>
+                <h4 class="post-meta" style="text-align:left">Delivery Date : <span class="confirm_text">{{delivery_date|safe}}</span><h4/>
+                <h4 class="post-meta" style="text-align:left">Message : <span class="confirm_text">{{delivery_message|safe}}</span><h4/>
+                <hr>
+                <h2 class="post-title">Design</h2>
+                <h4 class="post-meta" style="text-align:left">Design Keywords : <span style="word-wrap: break-word;" class="confirm_text">{{design_keywords|safe}}</span><h4/>
+                <hr>
+                <h2 class="post-title">Cost</h2>
+                <h4 class="post-meta" style="text-align:left">Floral Cost : $<span class="confirm_text">{{floral_cost|safe}}</span><h4/>
+                <h4 class="post-meta" style="text-align:left">Delivery Fee : $<span class="confirm_text">{{delivery_fee|safe}}</span><h4/>
+                <h4 class="post-meta" style="text-align:left">Total Cost : $<span class="confirm_text">{{total_cost|safe}}</span><h4/>
+                <hr>
+            </div>
+    </div>
+
+    <div class="row">
+         <div class="col-lg-8 col-lg-offset-2 payment-button" style="text-align: center;">
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="form-group" id="payment">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="YQWP6KD5YWSQ6">
+                <input type="hidden" name="lc" value="US">
+                <input type="hidden" name="button_subtype" value="services">
+                <input type="hidden" name="no_note" value="0">
+                <input type="hidden" name="cn" value="Add special instructions to the seller:">
+                <input type="hidden" name="no_shipping" value="2">
+                <input type="hidden" name="currency_code" value="USD">
+                <input id="value_order_number" name="item_name" type="hidden" value="Floral Arrangement: #{{ order_number|safe }}"/>
+                <!--<label for="total_amount">Amount Due:</label>-->
+                <!--<textarea id="total_amount" style="border-width: 0px; width: 100%; text-align: center; padding-bottom: 10px;" readonly="readonly"></textarea>-->
+                <input id="paypal-button" class="form-control" name="amount" value="" readonly="readonly" style="display:none;">
+                <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
+                <!--<input type="button" name="submit" alt="PayPal - The safer, easier way to pay online!" class="btn btn-primary">Pay Now</input>-->
+                <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-pill-paypalcheckout-34px.png" border="0" name="submit">
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+
+<!--Custom JS-->
+{%block custom_js%}
+<script>
+
+$( document ).ready(function() {
+       $('#paypal-button').val({{ total_cost|safe }});
+});
+
+
+</script>
+{%endblock%}

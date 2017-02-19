@@ -80,9 +80,6 @@ def process(request):
     date = date_time[0]
     time = date_time[1]
 
-    print(params)
-
-
     # Customer Information
     try:
         if params["fname"] == "":
@@ -258,8 +255,14 @@ def process(request):
     context ={
         "order_number": order_number,
     }
-    return JsonResponse(json.loads(json.dumps(context)))
-    # return render(request, 'country_floral_app/order.html', context)
+    # return JsonResponse(json.loads(json.dumps(context)))
+
+    return render(request, 'country_floral_app/submit.html', context)
+
+def confirm(request):
+    order_number = int(max(list(Floral.objects.values_list("order_number", flat=True))))
+    context = Floral.objects.all().filter(order_number=order_number).values()[0]
+    return render(request, 'country_floral_app/submit.html', context)
 
 def about(request):
     context = {
