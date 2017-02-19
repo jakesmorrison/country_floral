@@ -64,7 +64,7 @@ hr.small {
 }
 .navbar-custom .nav li a {
     /*text-transform: uppercase;*/
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 800;
     letter-spacing: 1px;
 }
@@ -645,6 +645,12 @@ label {
     width: 45%;
 }
 
+.navbar-brand {
+    font-size: 25px;
+}
+
+
+
 @media screen and (min-width: 200px) and (max-width: 1200px) {
     .insta-other{
         width: 100%;
@@ -680,11 +686,18 @@ label {
     .form-control{
         font-size: 15px;
     }
+    .navbar-brand {
+        font-size: 18px;
+    }
+
 }
 
 @media screen and (min-width: 200px) and (max-width: 320px) {
     .form-control{
         font-size: 12px;
+    }
+     .navbar-brand {
+        font-size: 18px;
     }
 }
 
@@ -799,4 +812,22 @@ body {font-family: Verdana,sans-serif;margin:0}
 .disabledbutton {
     pointer-events: none;
     opacity: 0.4;
+}
+
+input[type=text], textarea[type=text]{
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  /*outline: none;*/
+  /*padding: 3px 0px 3px 3px;*/
+  margin: 5px 1px 3px 0px;
+  /*border: 1px solid #DDDDDD;*/
+}
+
+input[type=text]:focus, textarea[type=text]:focus {
+  box-shadow: 0 0 5px #0085A1;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
 }
