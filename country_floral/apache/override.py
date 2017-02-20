@@ -3,7 +3,7 @@
 from country_floral.settings import *
 
 DEBUG = False
-ALLOWED_HOSTS = ['www.countryfloralidaho.com','countryfloralidaho.com', '198.199.102.149']
+ALLOWED_HOSTS = ['https://www.countryfloralidaho.com','www.countryfloralidaho.com','countryfloralidaho.com', '198.199.102.149']
 
 DATABASES = {
     'default': {

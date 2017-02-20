@@ -259,14 +259,11 @@ def process(request):
     # return render(request, 'country_floral_app/submit.html', context)
 
 def confirm(request):
-
-
     try:
         params = request.GET
         # order_number = int(max(list(Floral.objects.values_list("order_number", flat=True))))
         order_number = params["order_number"]
         context = Floral.objects.all().filter(order_number=order_number).values()[0]
-        write_to_error_file("#"+str(order_number) + " went to paypal. ")
     except Exception as e:
         write_to_error_file("#"+str(order_number) + " failed:"  + str(e))
 
