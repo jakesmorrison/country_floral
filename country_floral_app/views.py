@@ -217,7 +217,7 @@ def process(request):
         order_number = 0
 
     try:
-        my_error_string = time + " | " + date + " | " + fname + " | " + lname + " | " + email  + " | " + customer_phone  + " | " \
+        my_error_string = "#"+order_number + " | " + time + " | " + date + " | " + fname + " | " + lname + " | " + email  + " | " + customer_phone  + " | " \
                           "" + recipient  + " | " +  rec_phone_number  + " | " + address  + " | " +  delivery_date  + " | " +  message  + " | " \
                           "" + keywords  + " | " + str(total)  + " | " + str(delivery_fee)
         write_to_error_file(my_error_string)
@@ -259,10 +259,18 @@ def process(request):
     # return render(request, 'country_floral_app/submit.html', context)
 
 def confirm(request):
-    params = request.GET
-    # order_number = int(max(list(Floral.objects.values_list("order_number", flat=True))))
-    order_number = params["order_number"]
-    context = Floral.objects.all().filter(order_number=order_number).values()[0]
+
+
+    try:
+        params = request.GET
+        # order_number = int(max(list(Floral.objects.values_list("order_number", flat=True))))
+        order_number = params["order_number"]
+        context = Floral.objects.all().filter(order_number=order_number).values()[0]
+        write_to_error_file("#"+order_number + "went to paypal. ")
+    except Exception as e:
+        write_to_error_file("#"+order_number + "failed:"  + str(e))
+
+
     return render(request, 'country_floral_app/submit.html', context)
 
 def about(request):
