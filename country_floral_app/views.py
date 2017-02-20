@@ -255,12 +255,13 @@ def process(request):
     context ={
         "order_number": order_number,
     }
-    # return JsonResponse(json.loads(json.dumps(context)))
-
-    return render(request, 'country_floral_app/submit.html', context)
+    return JsonResponse(json.loads(json.dumps(context)))
+    # return render(request, 'country_floral_app/submit.html', context)
 
 def confirm(request):
-    order_number = int(max(list(Floral.objects.values_list("order_number", flat=True))))
+    params = request.GET
+    # order_number = int(max(list(Floral.objects.values_list("order_number", flat=True))))
+    order_number = params["order_number"]
     context = Floral.objects.all().filter(order_number=order_number).values()[0]
     return render(request, 'country_floral_app/submit.html', context)
 

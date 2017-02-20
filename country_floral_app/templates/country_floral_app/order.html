@@ -406,9 +406,7 @@ $('.cont_button').on('click', function() {
         url: my_url,
         type: 'GET',
         success: function (msg) {
-            var my_order_number = 0;
-            $('#value_order_number').val("Floral Arrangement: #" + my_order_number);
-            window.location.href = "{% url 'country_floral_app:confirm' %}";
+            window.location.href = "{% url 'country_floral_app:confirm' %}?order_number="+msg.order_number;
         }
     });
 });
@@ -416,3 +414,13 @@ $('.cont_button').on('click', function() {
 </script>
 {%endblock%}
 
+
+    <!--$.ajax({-->
+        <!--url: my_url,-->
+        <!--type: 'GET',-->
+        <!--success: function (msg) {-->
+            <!--$('#value_order_number').val("Floral Arrangement: #" + my_order_number);-->
+
+            <!--window.location.href = "{% url 'country_floral_app:confirm' %}";-->
+        <!--}-->
+    <!--});-->

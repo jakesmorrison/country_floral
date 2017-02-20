@@ -697,6 +697,13 @@ label {
         display: block;
     }
 
+    .messagepop {
+        left: 0%;
+        width: 100%;
+        padding: 0px 0px 5px;
+    }
+
+
 }
 
 @media screen and (min-width: 200px) and (max-width: 320px) {
@@ -711,6 +718,13 @@ label {
         color: #0085A1;
         content: ' ';
         display: block;
+    }
+
+
+    .messagepop {
+        left: 0%;
+        width: 100%;
+        padding: 0px 0px 5px;
     }
 
 }
