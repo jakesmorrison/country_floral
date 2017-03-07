@@ -21,9 +21,9 @@ class Floral(models.Model):
     delivery_address = models.CharField(max_length=100, default="x")
     delivery_date = models.DateField(default="0000-00-00")
 
-    delivery_message = models.CharField(max_length=500, default="x")
+    delivery_message = models.TextField(max_length=500, default="x")
 
-    design_keywords = models.CharField(max_length=1000, default="x")
+    design_keywords = models.TextField(max_length=1000, default="x")
 
     floral_cost = models.DecimalField(decimal_places=2, max_digits=10, default=0)
     delivery_fee = models.DecimalField(decimal_places=2, max_digits=4, default=0)
