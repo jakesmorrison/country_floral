@@ -258,6 +258,7 @@ def process(request):
     return JsonResponse(json.loads(json.dumps(context)))
     # return render(request, 'country_floral_app/submit.html', context)
 
+
 def confirm(request):
     try:
         params = request.GET
@@ -266,8 +267,6 @@ def confirm(request):
         context = Floral.objects.all().filter(order_number=order_number).values()[0]
     except Exception as e:
         write_to_error_file("#"+str(order_number) + " failed:"  + str(e))
-
-
     return render(request, 'country_floral_app/submit.html', context)
 
 def about(request):
