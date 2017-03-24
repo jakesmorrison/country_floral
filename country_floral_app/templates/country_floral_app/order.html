@@ -268,8 +268,15 @@ $('#keywords').selectize({
     }
 });
 
+var d = new Date();
+console.log(d);
 
-$(".datepicker").datepicker({ dateFormat: "yy-mm-dd", beforeShowDay: $.datepicker.noWeekends, minDate: 1 });
+if (d.getHours() <12){
+    $(".datepicker").datepicker({ dateFormat: "yy-mm-dd", beforeShowDay: $.datepicker.noWeekends})
+ }
+else {
+    $(".datepicker").datepicker({ dateFormat: "yy-mm-dd", beforeShowDay: $.datepicker.noWeekends, minDate: 1 })
+ }
 
 $(".phone").mask("(999) 999-9999");
 $(".phone").on("blur", function() {
