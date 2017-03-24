@@ -269,7 +269,7 @@ $('#keywords').selectize({
 });
 
 
-$(".datepicker").datepicker({ dateFormat: "yy-mm-dd" });
+$(".datepicker").datepicker({ dateFormat: "yy-mm-dd", beforeShowDay: $.datepicker.noWeekends, minDate: 1 });
 
 $(".phone").mask("(999) 999-9999");
 $(".phone").on("blur", function() {
