@@ -82,7 +82,7 @@
                             <div class="messagepop pop" style="overflow: auto;">
                                 <div class="col-lg-12 col-md-12 post-preview">
                                     <h2 class="post-title">Address</h2>
-                                    <h4 class="post-meta">Please fill in your address and click "close".</h4>
+                                    <h4 class="post-meta">Please fill delivery address and click "close".</h4>
                                     <div class="col-lg-8">
                                         <div class="row">
                                             <div class="col-lg-12 myinput">
@@ -310,7 +310,7 @@ $('#address').on('click', function() {
     $('#cost').val('');
     $('.confirm-button').hide();
 
-    $('.messagepop').show();
+    $('.messagepop').fadeIn(400);
     $(".disable_class").addClass("disabledbutton");
 });
 
@@ -327,7 +327,7 @@ $('.close').on('click', function() {
         ($("#address").text(address));
     }
     $(".disable_class").removeClass("disabledbutton");
-    $('.messagepop').hide();
+    $('.messagepop').fadeOut(400);
     calc_distance(address);
     return false;
 });
@@ -382,12 +382,12 @@ function calc_distance(a){
 }
 
 $('.closePic').on('click', function() {
-    $('#bigpic').hide();
+    $('#bigpic').fadeOut(400);
 });
 
 $('.popUp').on('click', function() {
       var clickedvalue = $(this).data('val');
-      $('#bigpic').show();
+      $('#bigpic').fadeIn(400);
       if (clickedvalue == "photo1"){
             $('.large-photo').html('<p class="post-meta" style="text-align:center;">$35</p> <img src="{% static "country_floral_app/img/photo1.jpg" %}" class="img-rounded my-photo-borders" width="100%" height="100%" data-val="photo1"> <button type="button" class="col-lg-12 col-xs-12 btn btn-primary" style="background-color:#0085A1; text-align:center;">Close</button>');
       } else if(clickedvalue == "photo2"){

@@ -884,3 +884,32 @@ input[type=text]:focus, textarea[type=text]:focus {
 .confirm_text{
     color: #0085A1;
 }
+
+/* animation */
+.messagepopappear {
+    display: block;
+    animation: appear .5s forwards ease;
+}
+
+@keyframes appear {
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
+
+.messagepopclose{
+    display:block;
+    transform-origin: bottom left;
+    animation: closePop1 .5s forwards ease;
+}
+
+@keyframes closePop1{
+    0%{opacity:1;}
+    100%{opacity:0;display:none;}
+}
+@keyframes closePop2{
+    0%{opacity:1; transform: rotateZ(0deg);}
+    40%{transform: rotateZ(120deg);}
+    70%{transform: rotateZ(75deg);}
+    100%{transform: rotateZ(90deg);opacity:0;display:none;}
+}
+
