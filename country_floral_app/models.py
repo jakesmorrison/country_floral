@@ -20,6 +20,8 @@ class Floral(models.Model):
     recipient_phone = models.CharField(max_length=15, default="x")
     delivery_address = models.CharField(max_length=100, default="x")
     delivery_date = models.DateField(default="0000-00-00")
+    delivery_type = models.CharField(max_length=100, default="x")
+
 
     delivery_message = models.TextField(max_length=500, default="x")
 

@@ -172,6 +172,15 @@ def process(request):
         write_to_error_file(time + " | " + date + " | " +"message error: " + str(e))
         message = "fail"
 
+    try:
+        if params["delivery_type"] == "":
+            delivery_type = "none"
+        else:
+            delivery_type = params["delivery_type"]
+    except Exception as e:
+        write_to_error_file(time + " | " + date + " | " +"delivery_type error: " + str(e))
+        delivery_type = "fail"
+
     # Design
     try:
         if params["keywords"] == "":
@@ -223,6 +232,10 @@ def process(request):
         write_to_error_file(my_error_string)
     except Exception as e:
         write_to_error_file(time + " | " + date + " | " + "error_string_error: "  + str(e))
+
+
+
+
     # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     # my_path = os.path.join(BASE_DIR, 'error_file.txt')
     # from django.conf import settings
@@ -246,6 +259,7 @@ def process(request):
             design_keywords = keywords,
             floral_cost = int(user_input),
             delivery_fee = float(delivery_fee),
+            delivery_type=delivery_type,
             total_cost = float(total),
         )
         s.save()

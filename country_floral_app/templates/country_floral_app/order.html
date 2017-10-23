@@ -137,6 +137,28 @@
                             <textarea type="text" class="form-control noresize" rows="10" id="message" maxlength="200"></textarea>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-12 myinput">
+                            <label class="mylabel">Delivery Type</label>
+                            <div class="row" style="margin-left: 1%;">
+                                <div class="col-lg-6">
+                                    <label class="radio-inline"><input type="radio" name="optradio" checked="" value="Residential">Residential</label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="radio-inline"><input type="radio" name="optradio" value="Business">Business</label>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-left: 1%;">
+                                <div class="col-lg-6">
+                                    <label class="radio-inline"><input type="radio" name="optradio" value="School">School</label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="radio-inline"><input type="radio" name="optradio" value="Hospital">Hospital</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="col-lg-12 col-lg-offset-10 col-md-12 col-lg-offset-0 post-preview disable_class">
@@ -402,10 +424,11 @@ $('.popUp').on('click', function() {
 });
 
 $('.cont_button').on('click', function() {
+
     url_base = "{% url 'country_floral_app:process' %}";
     params = {'fname': $("#fname").val(), 'lname': $("#lname").val(), 'email': $("#email").val(), 'myphone': $("#myphone").val(), 'instagram': $("#insta").val(),
               'recipient': $("#recipient").val(), 'custphone': $("#custphone").val(),'address': address, 'date': $('#date').val(), 'message': $("#message").val(),
-               'keywords': $("#keywords").val(), 'total': total,'delivery_fee': delivery_fee,'user_input': user_input};
+               'keywords': $("#keywords").val(), 'total': total,'delivery_fee': delivery_fee,'user_input': user_input, 'delivery_type': $("input[name='optradio']:checked").val()};
     my_url = url_base + "?" + $.param( params );
     $.ajax({
         url: my_url,

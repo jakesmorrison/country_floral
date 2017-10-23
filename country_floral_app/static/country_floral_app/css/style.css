@@ -913,3 +913,7 @@ input[type=text]:focus, textarea[type=text]:focus {
     100%{transform: rotateZ(90deg);opacity:0;display:none;}
 }
 
+.centered{
+    text-align:center;
+}
+
