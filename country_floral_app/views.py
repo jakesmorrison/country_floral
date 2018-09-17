@@ -247,6 +247,10 @@ def process(request):
     # my_path = os.path.join(BASE_DIR, 'error_file.txt')
     # from django.conf import settings
     # os.path.join(settings.MEDIA_ROOT, 'error_file.txt')
+
+    if delivery_type == 'Residential':
+        del_name = "none"
+
     try:
         s = Floral(
             order_number = order_number,
