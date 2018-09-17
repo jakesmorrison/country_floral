@@ -181,6 +181,15 @@ def process(request):
         write_to_error_file(time + " | " + date + " | " +"delivery_type error: " + str(e))
         delivery_type = "fail"
 
+    try:
+        if params["del_name"] == "":
+            del_name = "none"
+        else:
+            del_name = params["del_name"]
+    except Exception as e:
+        write_to_error_file(time + " | " + date + " | " +"del_name error: " + str(e))
+        del_name = "fail"
+
     # Design
     try:
         if params["keywords"] == "":
@@ -227,13 +236,11 @@ def process(request):
 
     try:
         my_error_string = "#"+str(order_number) + " | " + time + " | " + date + " | " + fname + " | " + lname + " | " + email  + " | " + customer_phone  + " | " \
-                          "" + recipient  + " | " +  rec_phone_number  + " | " + address  + " | " +  delivery_date  + " | " +  message  + " | " \
+                          "" + recipient  + " | " +  rec_phone_number  + " | " + address  + " | " +  delivery_date +" | " +  del_name  + " | " +  message  + " | " \
                           "" + keywords  + " | " + str(total)  + " | " + str(delivery_fee)
         write_to_error_file(my_error_string)
     except Exception as e:
         write_to_error_file(time + " | " + date + " | " + "error_string_error: "  + str(e))
-
-
 
 
     # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -260,6 +267,7 @@ def process(request):
             floral_cost = int(user_input),
             delivery_fee = float(delivery_fee),
             delivery_type=delivery_type,
+            del_name=del_name,
             total_cost = float(total),
         )
         s.save()

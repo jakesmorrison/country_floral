@@ -21,7 +21,7 @@ class Floral(models.Model):
     delivery_address = models.CharField(max_length=100, default="x")
     delivery_date = models.DateField(default="0000-00-00")
     delivery_type = models.CharField(max_length=100, default="x")
-
+    del_name = models.CharField(max_length=100, default="x")
 
     delivery_message = models.TextField(max_length=500, default="x")
 
@@ -31,7 +31,7 @@ class Floral(models.Model):
     delivery_fee = models.DecimalField(decimal_places=2, max_digits=4, default=0)
     total_cost = models.DecimalField(decimal_places=2, max_digits=10, default=0)
     def __str__(self):
-        return "{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {}".format(self.order_number,self.delivered,self.date_processed,self.time_processed,
+        return "{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {}".format(self.order_number,self.delivered,self.date_processed,self.time_processed,
                                                                      self.customer_first_name,self.customer_last_name,self.customer_email,self.customer_phone,self.customer_instagram,
                                                                      self.recipient_name,self.recipient_phone,self.delivery_address,self.delivery_date,
-                                                                     self.delivery_message,self.design_keywords,self.floral_cost,self.delivery_fee,self.total_cost)
+                                                                     self.delivery_message,self.design_keywords,self.floral_cost,self.delivery_fee, self.del_name, self.total_cost)
