@@ -237,7 +237,7 @@
 
 {%endblock%}
 
-<!--Custom JS-->
+<!-- Custom JS -->
 {%block custom_js%}
 <script>
 var street = "";
@@ -254,7 +254,7 @@ var foo = {{ keyword_list|safe }};
 var myoptions = [];
 var myoptgroups = [];
 
-<!--Design keys entry-->
+// <!--Design keys entry-->
 for (var key in foo) {
     if (foo.hasOwnProperty(key)) {
         if(key != "occasion"){
@@ -275,7 +275,7 @@ $( document ).ready(function() {
 });
 
 
-<!--Design keyword settings-->
+// <!--Design keyword settings-->
 $('#keywords').selectize({
     plugins: ['remove_button'],
     delimiter: ',',
@@ -359,7 +359,7 @@ $('.close').on('click', function() {
     }
     $(".disable_class").removeClass("disabledbutton");
     $('.messagepop').fadeOut(400);
-    calc_distance(address);
+    calc_distance(address, city, zip);
     return false;
 });
 
@@ -398,16 +398,20 @@ $('#cost').keyup(function() {
 
 function get_data(url) {
     $.getJSON(url, function(chart_data) {
-        delivery_fee = chart_data.cost;
+        if (chart_data.cost == 0) {
+            $( "#address" ).text( "Sorry, we do not deliver to your address." );
+        } else {
+            delivery_fee = chart_data.cost;
+        }
     });
 }
 
-function calc_distance(a){
+function calc_distance(a, c, z){
     var address = a;
     var start = "16626 Franklin Boulevard, Nampa, Idaho 83687-8212";
     url_base = "{% url 'country_floral_app:get_distance' %}";
     params = {'fname': $("#fname").val(), 'lname': $("#lname").val(), 'email': $("#email").val(), 'myphone': $("#myphone").val(),
-              'recipient': $("#recipient").val(), 'custphone': $("#custphone").val(), 'stop': address};
+              'recipient': $("#recipient").val(), 'custphone': $("#custphone").val(), 'stop': address, 'city': c, 'zip': z};
     url = url_base + "?" + $.param( params );
     get_data(url);
 }
@@ -433,7 +437,6 @@ $('.popUp').on('click', function() {
 });
 
 $('.cont_button').on('click', function() {
-
     url_base = "{% url 'country_floral_app:process' %}";
     params = {'fname': $("#fname").val(), 'lname': $("#lname").val(), 'email': $("#email").val(), 'myphone': $("#myphone").val(), 'instagram': $("#insta").val(),
               'recipient': $("#recipient").val(), 'custphone': $("#custphone").val(),'address': address, 'date': $('#date').val(), 'message': $("#message").val(),

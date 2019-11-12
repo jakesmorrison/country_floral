@@ -27,41 +27,59 @@ def order(request):
     return render(request, 'country_floral_app/order.html', context)
 
 def get_distance(request):
-    cost = cfg.CONFIG.BASE_DEL_FEE
+    params = request.GET
+    city = params['city']
+    myZip = str(params['zip'])
+    zipCode = cfg.CONFIG.ZIPCODES
+
+    cost = 0
+    try:
+        if city in zipCode.keys():
+            if myZip in zipCode[city].keys():
+                cost = zipCode[city][myZip]
+            else:
+                cost = 0
+        else: 
+            cost = 0 
+    except:
+        cost = 0
+
+    # cost = cfg.CONFIG.BASE_DEL_FEE
 
     # Time
-    mountain = timezone('US/Mountain')
-    mountain_time = datetime.now(mountain)
-    date_time = mountain_time.strftime('%Y-%m-%d_%H:%M:%S').split("_")
+    # mountain = timezone('US/Mountain')
+    # mountain_time = datetime.now(mountain)
+    # date_time = mountain_time.strftime('%Y-%m-%d_%H:%M:%S').split("_")
 
-    date = date_time[0]
-    time = date_time[1]
+    # date = date_time[0]
+    # time = date_time[1]
 
-    try:
-        params = request.GET
-        start = '16626 Franklin Boulevard, Nampa, Idaho 83687-8212'
-        url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + start + "&destination=" + \
-              params["stop"] + "&key=AIzaSyAoLeCMmBMEkX7-UAwnbeWEWoQGLJSjFnI"
-        url = url.replace(" ", "%20")
-        response = urlopen(url)
-        encoding = response.info().get_content_charset('utf8')
-        data = json.loads(response.read().decode(encoding))
-        distance = float((data["routes"][0]["legs"][0]["distance"]["text"]).split(" ")[0])
+    # try:
+    #     params = request.GET
+    #     print(params['city'])
+    #     start = '16626 Franklin Boulevard, Nampa, Idaho 83687-8212'
+    #     url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + start + "&destination=" + \
+    #           params["stop"] + "&key=AIzaSyAoLeCMmBMEkX7-UAwnbeWEWoQGLJSjFnI"
+    #     url = url.replace(" ", "%20")
+    #     response = urlopen(url)
+    #     encoding = response.info().get_content_charset('utf8')
+    #     data = json.loads(response.read().decode(encoding))
+    #     distance = float((data["routes"][0]["legs"][0]["distance"]["text"]).split(" ")[0])
 
-        if distance > 3:
-            cost = cost + int(distance - 3) * .5
+    #     if distance > 3:
+    #         cost = cost + int(distance - 3) * .5
 
-        error_string  = ""
-        for key,val in params.items():
-            error_string = error_string +""+key + ":" + val + "  |  "
-        write_to_error_file(time + " | " + date + " | " +"addresss pass ("+error_string+"): ")
+    #     error_string  = ""
+    #     for key,val in params.items():
+    #         error_string = error_string +""+key + ":" + val + "  |  "
+    #     write_to_error_file(time + " | " + date + " | " +"addresss pass ("+error_string+"): ")
 
-    except Exception as e:
-        error_string  = ""
-        for key,val in params.items():
-            error_string = error_string +""+key + ":" + val + "  |  "
-        write_to_error_file(time + " | " + date + " | " +"addresss error ("+error_string+"): " + str(e))
-        cost = 0
+    # except Exception as e:
+    #     error_string  = ""
+    #     for key,val in params.items():
+    #         error_string = error_string +""+key + ":" + val + "  |  "
+    #     write_to_error_file(time + " | " + date + " | " +"addresss error ("+error_string+"): " + str(e))
+    #     cost = 0
 
     context ={
         "cost": ("%.2f"%(cost)),
