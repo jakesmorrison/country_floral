@@ -308,16 +308,15 @@ def confirm(request):
     params = request.GET
     # order_number = int(max(list(Floral.objects.values_list("order_number", flat=True))))
     order_number = params["order_number"]
-    try:
-        if cfg.CONFIG.ORDERNUMBER == order_number:
-            try:
-                context = Floral.objects.all().filter(order_number=order_number).values()[0]
-            except Exception as e:
-                write_to_error_file("#"+str(order_number) + " failed:"  + str(e))
-            return render(request, 'country_floral_app/submit.html', context)
-        else: return render(request, 'country_floral_app/error.html', {})
-    except Exception as e:
-        write_to_error_file("#" + str(order_number) + " failed:" + str(e) + "more text " + str(cfg.CONFIG.ORDERNUMBER))
+    write_to_error_file("#" + str(order_number) + " vs #" + str(cfg.CONFIG.ORDERNUMBER))
+    if cfg.CONFIG.ORDERNUMBER == order_number:
+        try:
+            context = Floral.objects.all().filter(order_number=order_number).values()[0]
+        except Exception as e:
+            write_to_error_file("#"+str(order_number) + " failed:"  + str(e))
+        return render(request, 'country_floral_app/submit.html', context)
+    else: return render(request, 'country_floral_app/error.html', {})
+
 
 
 def about(request):
