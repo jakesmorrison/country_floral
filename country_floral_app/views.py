@@ -308,7 +308,6 @@ def confirm(request):
     params = request.GET
     # order_number = int(max(list(Floral.objects.values_list("order_number", flat=True))))
     order_number = params["order_number"]
-    write_to_error_file("#" + str(order_number) + " vs #" + str(cfg.CONFIG.ORDERNUMBER))
     if str(cfg.CONFIG.ORDERNUMBER) == str(order_number):
         try:
             context = Floral.objects.all().filter(order_number=order_number).values()[0]
@@ -316,7 +315,6 @@ def confirm(request):
             write_to_error_file("#"+str(order_number) + " failed:"  + str(e))
         return render(request, 'country_floral_app/submit.html', context)
     else: return render(request, 'country_floral_app/error.html', {})
-
 
 
 def about(request):
