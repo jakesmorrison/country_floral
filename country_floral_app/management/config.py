@@ -1,5 +1,6 @@
 import collections
 class CONFIG(object):
+    ORDERNUMBER = -1
     KEYWORDS = {
         "flowers": "roses lilies daisies peony anemomes hyacinths daffodils carnations snapdragons peas helleborus hydrangea alstromeria sunflowers larkspur asters agapanthus amaranthus hydrangea gerbera".split(" "),
         "colors": "pink red orange yellow green violet blue cherry ".split(" "),

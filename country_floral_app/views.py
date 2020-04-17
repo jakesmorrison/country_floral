@@ -8,11 +8,8 @@ from datetime import datetime, timedelta
 from pytz import timezone
 
 from .models import Floral
-import os
 
 # Create your views here.
-
-orderNumber = -1
 
 def index(request):
     context = {
@@ -295,11 +292,10 @@ def process(request):
             total_cost = float(total),
         )
         s.save()
+
+        cfg.CONFIG.ORDERNUMBER = order_number
     except Exception as e:
         write_to_error_file(time + " | " + date + " | " + "database error: " + str(e))
-
-    global orderNumber
-    orderNumber = order_number
 
     context ={
         "order_number": order_number,
@@ -309,19 +305,17 @@ def process(request):
 
 
 def confirm(request):
-    params = request.GET
-    # order_number = int(max(list(Floral.objects.values_list("order_number", flat=True))))
-    order_number = params["order_number"]
-    global orderNumber
-
-    if orderNumber == order_number:
+    if cfg.CONFIG.ORDERNUMBER == -1:
         try:
+            params = request.GET
+            # order_number = int(max(list(Floral.objects.values_list("order_number", flat=True))))
+            order_number = params["order_number"]
             context = Floral.objects.all().filter(order_number=order_number).values()[0]
         except Exception as e:
             write_to_error_file("#"+str(order_number) + " failed:"  + str(e))
         return render(request, 'country_floral_app/submit.html', context)
-    else:
-        return render(request, 'country_floral_app/error.html', {})
+    else: return render(request, 'country_floral_app/error.html', {})
+
 
 def about(request):
     context = {
