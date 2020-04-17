@@ -317,8 +317,7 @@ def confirm(request):
             return render(request, 'country_floral_app/submit.html', context)
         else: return render(request, 'country_floral_app/error.html', {})
     except Exception as e:
-        newVal = cfg.CONFIG.ORDERNUMBER == order_number
-        write_to_error_file("#" + str(order_number) + " failed:" + str(e) + "more text " + newVal)
+        write_to_error_file("#" + str(order_number) + " failed:" + str(e) + "more text " + str(cfg.CONFIG.ORDERNUMBER))
 
 
 def about(request):
