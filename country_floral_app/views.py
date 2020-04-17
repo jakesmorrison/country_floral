@@ -293,10 +293,10 @@ def process(request):
         )
         s.save()
 
-        cfg.CONFIG.ORDERNUMBER = order_number
     except Exception as e:
         write_to_error_file(time + " | " + date + " | " + "database error: " + str(e))
 
+    cfg.CONFIG.ORDERNUMBER = order_number
     context ={
         "order_number": order_number,
     }
@@ -305,7 +305,7 @@ def process(request):
 
 
 def confirm(request):
-    if cfg.CONFIG.ORDERNUMBER == -1:
+    if cfg.CONFIG.ORDERNUMBER != -1:
         try:
             params = request.GET
             # order_number = int(max(list(Floral.objects.values_list("order_number", flat=True))))
